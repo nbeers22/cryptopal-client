@@ -6,3 +6,9 @@
   max-width: 700px;
   margin: 0 auto;
 }
+
+@media(max-width: 767px){
+  .intro-subhead{
+    width: 100%;
+  }
+}
