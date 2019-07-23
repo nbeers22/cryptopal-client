@@ -1,14 +1,41 @@
+section{
+  padding: 5% 0;
+}
 .intro{
   text-align: center;
+}
+.intro h1{
+  margin-top: 0;
 }
 .intro-subhead{
   width: 90%;
   max-width: 700px;
   margin: 0 auto;
 }
+.features .feature-container{
+  display: flex;
+  width: 90%;
+  max-width: 800px;
+  margin: 0 auto;
+  justify-content: center;
+}
+.feature{
+  flex-grow: 1;
+  text-align: center;
+  margin: 0 15px;
+}
+.feature .svg-inline--fa{
+  font-size: 5em;
+}
 
 @media(max-width: 767px){
   .intro-subhead{
     width: 100%;
+  }
+  .features .feature-container{
+    flex-wrap: wrap;
+  }
+  .feature{
+    margin: 15px 0;
   }
 }
