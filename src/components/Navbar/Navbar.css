@@ -1,0 +1,21 @@
+nav{
+  display: flex;
+}
+.top-bar-left, .top-bar-right{
+  width: 50%;
+  align-items: center;
+}
+.top-bar-left{
+  
+}
+.top-bar-right ul{
+  list-style-type: none;
+  padding-left: 0;
+  text-align: right;
+}
+.top-bar-right li{
+  display: inline-block;
+}
+.top-bar-right li a{
+  padding: 10px 20px;
+}
