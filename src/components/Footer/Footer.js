@@ -7,7 +7,9 @@ function Footer() {
 
   return(
     <footer className="footer">
-      <p>Copyright &copy;{date.getFullYear()}</p>
+      <div className="container">
+        <p>Copyright &copy;{date.getFullYear()}</p>
+      </div>
     </footer>
   )
 }
