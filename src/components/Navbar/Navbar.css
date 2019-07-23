@@ -1,5 +1,6 @@
 nav{
   display: flex;
+  background-color: #333333;
 }
 .top-bar-left, .top-bar-right{
   width: 50%;
@@ -18,4 +19,6 @@ nav{
 }
 .top-bar-right li a{
   padding: 10px 20px;
+  color: #FFF;
+  text-decoration: none;
 }
