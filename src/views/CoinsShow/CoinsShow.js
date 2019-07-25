@@ -1,11 +1,13 @@
 import React, { Component } from 'react'
+import CoinData from '../../components/CoinData/CoinData.js'
+import config from '../../config.js'
 
-export default class CoinsShow extends Component {
-  render() {
-    return (
-      <div>
-        
-      </div>
-    )
-  }
+function CoinsShow() {
+  return (
+    <div>
+      <CoinData />
+    </div>
+  )
 }
+
+export default CoinsShow;
