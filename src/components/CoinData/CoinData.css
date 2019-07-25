@@ -1,0 +1,9 @@
+.CoinData-hero{
+  text-align: center;
+}
+.CoinData .description{
+  width: 90%;
+  max-width: 700px;
+  margin: 0 auto;
+  text-align: left;
+}
