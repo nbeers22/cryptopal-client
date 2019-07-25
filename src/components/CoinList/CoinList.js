@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import Coin from '../Coin/Coin.js'
+import config from '../../config.js'
 import './CoinList.css'
 
 export default class CoinList extends Component {
@@ -11,7 +12,7 @@ export default class CoinList extends Component {
   }
   
   componentDidMount(){
-    const url = "http://localhost:4000";
+    const url = `${config.API_URL}/coins`;
     fetch(url)
     .then( response => {
       return response.ok
@@ -40,22 +41,22 @@ export default class CoinList extends Component {
     return (
       <section className="Coinlist">
         <div className="container">
-          <div class="rTable">
-            <div class="rTableHeading">
-              <div class="rTableHead">
+          <div className="rTable">
+            <div className="rTableHeading">
+              <div className="rTableHead">
                 Name (Symbol)
               </div>
-              <div class="rTableHead">
+              <div className="rTableHead">
                 Price
               </div>
-              <div class="rTableHead">
+              <div className="rTableHead">
                 Change (24hr)
               </div>
-              <div class="rTableHead">
+              <div className="rTableHead">
                 Market Cap
               </div>
             </div>
-            <div class="rTableBody">
+            <div className="rTableBody">
               {coins}
             </div>
           </div>
