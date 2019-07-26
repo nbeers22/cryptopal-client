@@ -66,7 +66,7 @@ class CoinData extends Component {
   render() {
     const { name, urls, logo, symbol, description, tags } = this.state.coinData[1];
     const { cmc_rank, max_supply, quote } = this.state.coinMarket[1];
-    console.log(this.state.coinMarket[1])
+    
     return (
       
       <div className="CoinData">
@@ -90,6 +90,11 @@ class CoinData extends Component {
                 <p><a href={urls.website}>Website</a></p>
                 <p><a href={urls.website}>Website</a></p>
               </aside>
+            </div>
+          </section>
+          <section className="price-history">
+            <div className="container">
+
             </div>
           </section>
         </div>
