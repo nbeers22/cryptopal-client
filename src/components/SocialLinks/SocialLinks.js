@@ -6,10 +6,10 @@ function SocialLinks(props){
   let reddit,twitter;
 
   if(props.twitter){
-    twitter = <li className="twitter"><a href={props.twitter} target="_blank"><FontAwesomeIcon icon={faTwitter} /></a></li>
+    twitter = <li className="twitter"><a href={props.twitter} target="_blank" rel="noopener noreferrer"><FontAwesomeIcon icon={faTwitter} /></a></li>
   }
   if(props.reddit){
-    reddit = <li className="reddit"><a href={props.reddit} target="_blank"><FontAwesomeIcon icon={faReddit} /></a></li>
+    reddit = <li className="reddit"><a href={props.reddit} target="_blank" rel="noopener noreferrer"><FontAwesomeIcon icon={faReddit} /></a></li>
   }
   return(
     <ul className="social">
