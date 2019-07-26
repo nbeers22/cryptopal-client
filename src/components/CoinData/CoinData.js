@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import { withRouter } from 'react-router-dom'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faReddit, faTwitter } from '@fortawesome/free-brands-svg-icons'
+import SocialLinks from '../SocialLinks/SocialLinks.js'
 import config from '../../config.js'
 import './CoinData.css'
 
@@ -20,7 +19,8 @@ class CoinData extends Component {
             reddit: "",
             message_board: "",
             explorer: [],
-            source_code: ""
+            source_code: "",
+            chat: []
           },
           logo: "",
           symbol: "",
@@ -69,6 +69,7 @@ class CoinData extends Component {
     const { name, urls, logo, symbol, description, tags } = this.state.coinData[this.coinID];
     const { cmc_rank, max_supply, quote } = this.state.coinMarket[this.coinID];
     
+    
     return (
       <div className="CoinData">
         <div className="container">
@@ -76,6 +77,9 @@ class CoinData extends Component {
             <img src={logo} alt=""/>
             <h1>{name}</h1>
             <p>{`Rank #${cmc_rank}`}</p>
+            <SocialLinks
+              twitter={urls.twitter[0]}
+              reddit={urls.reddit[0]} />
             <p className="description">{description}</p>
           </section>
           <section className="CoinData-info">
@@ -83,10 +87,6 @@ class CoinData extends Component {
               <aside className="coin-links">
                 <h3>Links</h3>
                 <p><a href={urls.website} target="_blank">Website</a></p>
-                <ul>
-                  <li><a href={urls.reddit} target="_blank"><FontAwesomeIcon icon={faReddit} /></a></li>
-                  <li><a href={urls.twitter} target="_blank"><FontAwesomeIcon icon={faTwitter} /></a></li>
-                </ul>
                 <p><a href={urls.website}>Website</a></p>
                 <p><a href={urls.website}>Website</a></p>
                 <p><a href={urls.website}>Website</a></p>

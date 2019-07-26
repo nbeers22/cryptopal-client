@@ -1,6 +1,24 @@
 .CoinData-hero{
   text-align: center;
 }
+.CoinData .social{
+  list-style-type: none;
+  padding-left: 0;
+  display: flex;
+  justify-content: center
+}
+.CoinData .social li{
+  margin: 0 10px;
+}
+.CoinData .social svg{
+  font-size: 2em;
+}
+.CoinData .reddit path{
+  fill: #FF4301
+}
+.CoinData .twitter path{
+  fill: #1DA1F2
+}
 .CoinData .description{
   width: 90%;
   max-width: 700px;
