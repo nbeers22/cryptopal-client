@@ -31,6 +31,7 @@ export default class CoinList extends Component {
     const coins = this.state.coins.map( coin => (
       <Coin
         name={coin.name}
+        id={coin.id}
         key={coin.id}
         symbol={coin.symbol}
         price={coin.quote.USD.price}

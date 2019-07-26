@@ -1,11 +1,12 @@
-import React from 'react'
+import React from 'react';
+import { Link } from 'react-router-dom';
 
 function Coin(props){
-  const { name, symbol, price, marketCap, percentChangeDay } = props;
+  const { name, symbol, id, price, marketCap, percentChangeDay } = props;
   return (
     <div className="rTableRow">
       <div className="rTableCell">
-        {`${name} (${symbol})`}
+        <Link to={`/coins/${id}`}>{`${name} (${symbol})`}</Link>
       </div>
       <div className="rTableCell">
         {`$${price.toFixed(2)}`}

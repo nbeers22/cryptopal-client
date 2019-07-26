@@ -6,56 +6,59 @@ import config from '../../config.js'
 import './CoinData.css'
 
 class CoinData extends Component {
-  state = {
-    coinData: {
-      1: {
-        name: "",
-        urls: {
-          website: "",
-          technical_doc: "",
-          twitter: "",
-          reddit: "",
-          message_board: "",
-          explorer: [],
-          source_code: ""
-        },
-        logo: "",
-        symbol: "",
-        description: "",
-        tags: []
-      }
-    },
-    coinMarket: {
-      1: {
-        cmc_rank: null,
-        max_supply: null,
-        circulating_supply: null,
-        quote: {
-          USD: {
-            market_cap: null,
-            percent_change_1h: null,
-            percent_change_24h: null,
-            percent_change_7d: null,
-            price: null,
-            volume_24h: null
+  constructor(props){
+    super(props);
+    this.coinID = this.props.match.params.coin_id;
+    this.state = {
+      coinData: {
+        [this.coinID]: {
+          name: "",
+          urls: {
+            website: "",
+            technical_doc: "",
+            twitter: "",
+            reddit: "",
+            message_board: "",
+            explorer: [],
+            source_code: ""
+          },
+          logo: "",
+          symbol: "",
+          description: "",
+          tags: []
+        }
+      },
+      coinMarket: {
+        [this.coinID]: {
+          cmc_rank: null,
+          max_supply: null,
+          circulating_supply: null,
+          quote: {
+            USD: {
+              market_cap: null,
+              percent_change_1h: null,
+              percent_change_24h: null,
+              percent_change_7d: null,
+              price: null,
+              volume_24h: null
+            }
           }
-        },
-        
+        }
       }
     }
   }
   
   componentDidMount(){
-    const coinID = this.props.match.params.coin_id;
     const urls = [
-      `${config.API_URL}/coins/${coinID}`,
-      `${config.API_URL}/coins/${coinID}/market`
+      `${config.API_URL}/coins/${this.coinID}`,
+      `${config.API_URL}/coins/${this.coinID}/market`
     ];
     Promise.all(urls.map(url => fetch(url)))
       .then(responses => Promise.all(
         responses.map(response => response.json())
       ))
       .then(data => {
+        console.log(data)
         this.setState({
           coinData: data[0].data,
           coinMarket: data[1].data
@@ -64,11 +67,10 @@ class CoinData extends Component {
   }
 
   render() {
-    const { name, urls, logo, symbol, description, tags } = this.state.coinData[1];
-    const { cmc_rank, max_supply, quote } = this.state.coinMarket[1];
+    const { name, urls, logo, symbol, description, tags } = this.state.coinData[this.coinID];
+    const { cmc_rank, max_supply, quote } = this.state.coinMarket[this.coinID];
     
     return (
-      
       <div className="CoinData">
         <div className="container">
           <section className="CoinData-hero">
