@@ -58,7 +58,6 @@ class CoinData extends Component {
         responses.map(response => response.json())
       ))
       .then(data => {
-        console.log(data)
         this.setState({
           coinData: data[0].data,
           coinMarket: data[1].data
