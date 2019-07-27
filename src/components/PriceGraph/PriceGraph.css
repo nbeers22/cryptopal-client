@@ -1,0 +1,18 @@
+.apexcharts-xaxis,.apexcharts-toolbar{
+  display: none!important;
+}
+.btn-group{
+  text-align: center;
+}
+.btn-group button{
+  border-radius: 0;
+  background-color: #fff;
+  color: blue;
+  padding: 10px 20px;
+  cursor: pointer;
+}
+.btn-group button.active{
+  background-color: blue;
+  color: #FFF;
+  outline: 0;
+}
