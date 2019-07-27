@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { withRouter } from 'react-router-dom'
 import SocialLinks from '../SocialLinks/SocialLinks.js'
+import PriceGraph from '../PriceGraph/PriceGraph.js'
 import config from '../../config.js'
 import './CoinData.css'
 
@@ -24,6 +25,7 @@ class CoinData extends Component {
           },
           logo: "",
           symbol: "",
+          slug: "",
           description: "",
           tags: []
         }
@@ -66,16 +68,15 @@ class CoinData extends Component {
   }
 
   render() {
-    const { name, urls, logo, symbol, description, tags } = this.state.coinData[this.coinID];
+    const { name, urls, logo, symbol, slug, description, tags } = this.state.coinData[this.coinID];
     const { cmc_rank, max_supply, quote } = this.state.coinMarket[this.coinID];
-    
     
     return (
       <div className="CoinData">
         <div className="container">
           <section className="CoinData-hero">
             <img src={logo} alt=""/>
-            <h1>{name}</h1>
+            <h1>{`${name} (${symbol})`}</h1>
             <p>{`Rank #${cmc_rank}`}</p>
             <SocialLinks
               twitter={urls.twitter[0]}
@@ -95,7 +96,7 @@ class CoinData extends Component {
           </section>
           <section className="price-history">
             <div className="container">
-
+              <PriceGraph slug={slug} />
             </div>
           </section>
         </div>
