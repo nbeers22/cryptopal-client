@@ -14,6 +14,19 @@ export default class PriceGraph extends Component {
         chart: {
           zoom: {
             enabled: true
+          },
+          animations: {
+            enabled: true,
+            easing: 'easeinout',
+            speed: 800,
+            animateGradually: {
+                enabled: true,
+                delay: 150
+            },
+            dynamicAnimation: {
+                enabled: true,
+                speed: 350
+            }
           }
         },
         dataLabels: {
@@ -23,7 +36,7 @@ export default class PriceGraph extends Component {
           curve: 'straight'
         },
         title: {
-          text: `Price History - 30 Days`,
+          text: `Price History`,
           align: 'center',
           num: 20
         },
@@ -35,7 +48,14 @@ export default class PriceGraph extends Component {
         },
         xaxis: {
           categories: [],
-        }
+        },
+        yaxis: {
+          labels: {
+            formatter: function (value) {
+              return `$${value}`;
+            }
+          },
+        },
       },
       series: [{
           name: "Price USD",
@@ -102,6 +122,7 @@ export default class PriceGraph extends Component {
   }
 
   render() {
+    
     return (
       <div className="PriceGraph">
         <div className="btn-group">

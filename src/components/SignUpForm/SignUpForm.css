@@ -1,0 +1,28 @@
+.form-group{
+  margin-bottom: 20px;
+}
+.form-group label{
+  display: block;
+  margin-bottom: 5px;
+}
+.form-input{
+  padding: 5px 10px;
+  border-radius: 3px;
+  height: 20px;
+  font-size: 14px;
+  border-radius: 3px;
+  box-shadow: none;
+  border: 1px solid #ccc;
+}
+input[type=submit]{
+  padding: 10px 25px;
+  border-radius: 3px;
+  color: #FFF;
+  background-color: #428bca;
+  cursor: pointer;
+  text-transform: uppercase;
+  transition: background-color 0.25s ease-in-out
+}
+input[type=submit]:hover{
+  background-color: #3071a9;
+}
