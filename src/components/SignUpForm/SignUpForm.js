@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom'
 import FlashMessage from '../FlashMessage/FlashMessage.js';
 import config from '../../config.js';
 import './SignUpForm.css';
@@ -92,6 +93,7 @@ export default class SignUpForm extends Component {
               <input type="submit" value="Submit" />
             </div>
           </form>
+          <p>Already have an account? <Link to="/login">Sign in</Link></p>
         </div>
       </section>
     )
