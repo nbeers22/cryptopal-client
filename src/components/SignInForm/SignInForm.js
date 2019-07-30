@@ -32,7 +32,6 @@ class SignInForm extends Component {
     })
     .then( response => response.json() )
     .then( data => {
-      console.log(data);
       if(data.error){
         this.setState({
           showFlashMessage: true,
