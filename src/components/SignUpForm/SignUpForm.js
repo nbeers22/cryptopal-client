@@ -12,7 +12,7 @@ export default class SignUpForm extends Component {
     confirmPassword: '',
     submitError: '',
     showFlashMessage: false,
-    flashMessage: 'Account created successfully! You may now '
+    flashMessage: ''
   }
 
   handleFormSubmit = event => {
@@ -33,13 +33,26 @@ export default class SignUpForm extends Component {
     .then( response => response.json() )
     .then( data => {
       console.log(data);
-      this.setState({
-        showFlashMessage: true
-      })
+      if(data.error){
+        this.setState({
+          showFlashMessage: true,
+          flashMessage: data.error,
+          submitError: true
+        })
+      }else{
+        this.setState({
+          showFlashMessage: true,
+          flashMessage: 'Account created successfully! You may now '
+        })
+      }
     })
     .catch( response => {
       console.log(response.error)
-      this.setState({ submitError: response.error })
+      this.setState({ 
+        submitError: true,
+        showFlashMessage: true,
+        flashMessage: 'There was a problem creating your account'
+      })
     })
   }
 
@@ -49,11 +62,11 @@ export default class SignUpForm extends Component {
   }
 
   render() {
-    const { flashMessage, showFlashMessage } = this.state;
+    const { flashMessage, showFlashMessage, submitError } = this.state;
     return (
       <section className="SignUpForm">
         <div className="container">
-        { showFlashMessage && <FlashMessage message={flashMessage} /> }
+        { showFlashMessage && <FlashMessage message={flashMessage} error={submitError} /> }
           <div className="page-meta">
             <h1>Sign Up</h1>
             <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Laboriosam quisquam fugiat quae expedita, vero distinctio non quo error eveniet repellat illo qui id facilis aliquam itaque veritatis magni. Quisquam, fugiat!</p>
