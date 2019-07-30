@@ -6,6 +6,7 @@ import Home from './views/Home/Home.js';
 import CoinsIndex from './views/CoinsIndex/CoinsIndex.js';
 import CoinsShow from './views/CoinsShow/CoinsShow.js';
 import SignUp from './views/SignUp/SignUp.js';
+import SignIn from './views/SignIn/SignIn.js';
 import NoMatch from './views/NoMatch/NoMatch.js';
 import './App.css';
 
@@ -18,6 +19,7 @@ function App() {
           <Route exact path="/coins" component={CoinsIndex} />
           <Route exact path="/coins/:coin_id" component={CoinsShow} />
           <Route path="/signup" component={SignUp} />
+          <Route path="/login" component={SignIn} />
           <Route component={NoMatch} />
         </Switch>
       <Footer />
