@@ -1,24 +1,76 @@
 nav{
-  display: flex;
   background-color: #333333;
 }
+nav .container{
+  display: flex;
+}
+nav img{
+  height: 30px;
+  width: 30px;
+  border-radius: 50%;
+}
 .top-bar-left, .top-bar-right{
-  width: 50%;
+  width: 80%;
   align-items: center;
 }
-.top-bar-left{
-  
+.top-bar-right{
+  width: 20%;
+}
+.top-bar-right{
+  position: relative;
 }
 .top-bar-right ul{
   list-style-type: none;
   padding-left: 0;
   text-align: right;
 }
-.top-bar-right li{
-  display: inline-block;
-}
 .top-bar-right li a{
   padding: 10px 20px;
   color: #FFF;
   text-decoration: none;
+}
+.name{
+  position: relative;
+  bottom: 10px;
+}
+li {
+  display: block;
+  transition-duration: 0.5s;
+}
+li:hover {
+  cursor: pointer;
+}
+ul li ul {
+  visibility: hidden;
+  opacity: 0;
+  position: absolute;
+  transition: all 0.5s ease;
+  padding-top: 1rem;
+  display: none;
+  width: 130px;
+  right: 0;
+}
+
+ul li:hover > ul,
+ul li:focus-within > ul {
+  visibility: visible;
+  opacity: 1;
+  display: block;
+  background-color: #333333;
+}
+ul li ul li {
+  clear: both;
+  width: 100%;
+  text-align: left;
+}
+ul li ul li a{
+  display: block;
+  transition: all 0.25s ease-in-out;
+}
+ul li ul li a:hover{
+  background-color: #FFF;
+  color: #333;
+}
+li:focus-within a {
+  outline: none;
 }
