@@ -11,17 +11,18 @@ export default class SignUpForm extends Component {
     email: '',
     password: '',
     confirmPassword: '',
-    submitError: '',
+    submitError: false,
     showFlashMessage: false,
     flashMessage: ''
   }
 
   handleFormSubmit = event => {
     event.preventDefault();
+    const { name, email, password } = this.state;
     const newUser = {
-      name: this.state.name,
-      email: this.state.email,
-      password: this.state.password,
+      name,
+      email,
+      password
     }
     const url = `${config.API_URL}/auth/signup`;
     fetch(url,{
