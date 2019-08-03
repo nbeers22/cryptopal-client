@@ -1,0 +1,9 @@
+.intro{
+  text-align: center;
+}
+.dashboard-favorites img{
+  width: 300px;
+}
+.dashboard-favorites .empty{
+  text-align: center;
+}
