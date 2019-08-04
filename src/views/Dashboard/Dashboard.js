@@ -5,11 +5,13 @@ import TokenService from '../../services/token-service';
 import config from '../../config.js';
 import sadFace from './images/sadface.png';
 import './Dashboard.css';
+import FavoriteList from '../../components/FavoriteList/FavoriteList.js';
 
 export default class Dashboard extends Component {
 
   constructor(){
     super();
+    this.getUserFavorites = this.getUserFavorites.bind(this);
     this.state = {
       loggedIn: true,
       name: '',
@@ -21,7 +23,7 @@ export default class Dashboard extends Component {
   componentDidMount(){
     this.checkLoggedIn();
     const name = TokenService.getAuthName();
-    this.setState({ name })
+    this.setState({ name }, this.getUserFavorites )
   }
 
   checkLoggedIn(){
@@ -39,7 +41,7 @@ export default class Dashboard extends Component {
     this.setState({ modalVisible: false })
   }
 
-  addToFavorites(coinID){
+  addToFavorites = coinID => {
     const url = `${config.API_URL}/users/favorites`;
     const authToken = TokenService.getAuthToken();
 
@@ -52,11 +54,30 @@ export default class Dashboard extends Component {
       body: JSON.stringify({ coinID })
     })
     .then( response => {
-      console.log(response)
+      if(response.ok){
+        this.getUserFavorites();
+      }
     })
   }
 
-  
+  getUserFavorites = () => {
+    const userID = TokenService.getAuthUserID();
+    const url = `${config.API_URL}/users/${userID}/favorites`;
+
+    fetch(url)
+    .then( response => {
+      return response.ok
+        ? response.json()
+        : alert(response.statusText)
+    })
+    .then( data => {
+      if(data.favorites !== null){
+        this.setState({
+          favorites: data.favorites
+        })
+      }
+    })
+  }
 
   render() {
     if(!this.state.loggedIn){
@@ -70,21 +91,22 @@ export default class Dashboard extends Component {
         <p>Why not <a href="#" onClick={this.showModal}>add a coin</a>?</p>
       </div>
 
-    const dashboardFavs = favorites.map( fav => (
-      <div className="favorite">
-        {fav}
-      </div>
-    ));
-
     return (
       <div className="Dashboard">
         <section className="intro">
           <h1>Welcome to your dashboard, {name}</h1>
           <p className="intro-subhead">Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur provident vero fugiat ratione recusandae libero nemo in fuga nostrum debitis, modi eaque mollitia voluptatibus ad blanditiis dolor perspiciatis inventore quisquam!</p>
+          {
+            favorites.length && <button onClick={this.showModal}>Add Favorite</button>
+          }
         </section>
         <section className="dashboard-favorites">
-         { !favorites.length ? emptyDashboard : dashboardFavs }
+         {  !favorites.length
+            ? emptyDashboard
+            : <FavoriteList favorites={favorites} /> 
+         }
         </section>
+
         { modalVisible 
           && <SearchModal
                 closeModal={() => this.hideModal()}
