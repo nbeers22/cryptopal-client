@@ -15,8 +15,7 @@ nav img{
 }
 .top-bar-right{
   width: 20%;
-}
-.top-bar-right{
+  min-width: 200px;
   position: relative;
 }
 .top-bar-right ul{
