@@ -18,7 +18,6 @@ export default class FavoriteList extends Component {
   }
 
   componentWillReceiveProps(props){
-    console.log("props received")
     const { favorites } = props;
     this.fetchFavoritesData(favorites);
   }
@@ -41,11 +40,28 @@ export default class FavoriteList extends Component {
             ...data[1].data[key],
           }
         });
-        console.log(favorites)
         this.setState({
           favorites
         })
       })
+  }
+
+  removeFavorite = (coinID, authToken) => {
+    
+    const url = `${config.API_URL}/users/favorites`
+    fetch(url,{
+      method: 'PUT',
+      headers: {
+        'content-type': 'application/json',
+        'Authorization': `Bearer ${authToken}`
+      },
+      body: JSON.stringify({ coinID })
+    })
+    .then( response => {
+      if(response.ok){
+        this.props.getUserFavorites();
+      }
+    })
   }
 
   render() {
@@ -61,6 +77,7 @@ export default class FavoriteList extends Component {
         change24hr={fav.quote.USD.percent_change_24h.toFixed(2)}
         id={fav.id}
         marketCap={fav.quote.USD.market_cap.toFixed(2)}
+        removeFavorite={this.removeFavorite}
       />
     });
     return (
