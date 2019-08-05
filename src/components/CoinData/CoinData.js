@@ -6,6 +6,8 @@ import config from '../../config.js'
 import './CoinData.css'
 
 class CoinData extends Component {
+  _isMounted = false;
+
   constructor(props){
     super(props);
     this.coinID = this.props.match.params.coin_id;
@@ -51,6 +53,7 @@ class CoinData extends Component {
   }
   
   componentDidMount(){
+    this._isMounted = true;
     const urls = [
       `${config.API_URL}/coins/${this.coinID}`,
       `${config.API_URL}/coins/${this.coinID}/market`
@@ -60,11 +63,17 @@ class CoinData extends Component {
         responses.map(response => response.json())
       ))
       .then(data => {
-        this.setState({
-          coinData: data[0].data,
-          coinMarket: data[1].data
-        })
+        if(this._isMounted){
+          this.setState({
+            coinData: data[0].data,
+            coinMarket: data[1].data
+          })
+        }
       })
+  }
+
+  componentWillUnmount(){
+    this._isMounted = false;
   }
 
   render() {
