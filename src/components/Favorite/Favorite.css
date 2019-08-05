@@ -10,6 +10,12 @@
 .Favorite h2{
   margin-top: 0;
 }
+.green{
+  color: green;
+}
+.red{
+  color: red;
+}
 
 @media(max-width: 800px){
   .Favorite{
