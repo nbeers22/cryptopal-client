@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Redirect } from 'react-router-dom';
+import { Redirect, withRouter } from 'react-router-dom';
 import SearchModal from '../../components/SearchModal/SearchModal.js';
 import TokenService from '../../services/token-service';
 import config from '../../config.js';
@@ -7,7 +7,7 @@ import sadFace from './images/sadface.png';
 import './Dashboard.css';
 import FavoriteList from '../../components/FavoriteList/FavoriteList.js';
 
-export default class Dashboard extends Component {
+class Dashboard extends Component {
 
   constructor(){
     super();
@@ -25,6 +25,10 @@ export default class Dashboard extends Component {
     const name = TokenService.getAuthName();
     this.setState({ name }, this.getUserFavorites )
   }
+  
+  componentWillUnmount(){
+    this.removeModalBackground();
+  }
 
   checkLoggedIn(){
     const token = TokenService.getAuthToken();
@@ -34,11 +38,20 @@ export default class Dashboard extends Component {
   }
 
   showModal = () => {
+    const div = document.createElement("div");
+    div.classList.add('modal-open')
+    document.body.insertBefore(div, document.body.firstChild);
     this.setState({ modalVisible: true })
   }
   
   hideModal = () => {
+    this.removeModalBackground();
     this.setState({ modalVisible: false })
+  }
+
+  removeModalBackground(){
+    const div = document.getElementsByClassName('modal-open')[0];
+    div.remove();
   }
 
   addToFavorites = coinID => {
@@ -56,6 +69,13 @@ export default class Dashboard extends Component {
     .then( response => {
       if(response.ok){
         this.getUserFavorites();
+      }else{
+        return response.json()
+      }
+    })
+    .then(res => {
+      if(res.error === "Token Expired"){
+        this.props.history.push('/login')
       }
     })
   }
@@ -117,3 +137,5 @@ export default class Dashboard extends Component {
     )
   }
 }
+
+export default withRouter(Dashboard);
