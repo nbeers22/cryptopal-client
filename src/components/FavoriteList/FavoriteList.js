@@ -78,6 +78,7 @@ export default class FavoriteList extends Component {
         id={fav.id}
         marketCap={fav.quote.USD.market_cap.toFixed(2)}
         removeFavorite={this.removeFavorite}
+        slug={fav.slug}
       />
     });
     return (
