@@ -49,18 +49,20 @@ export default class FavoriteList extends Component {
   }
 
   render() {
-    const favs = this.state.favorites.map( (fav,index) => (
-      <Favorite
+    const favs = this.state.favorites.map( (fav,index) => {
+      let decimalPlaces = fav.quote.USD.price >= .01 ? 2 : 4;
+  
+      return <Favorite
         key={index}
         rank={fav.cmc_rank}
         logo={fav.logo}
         name={`${fav.name} (${fav.symbol})`}
-        price={fav.quote.USD.price.toFixed(2)}
+        price={+fav.quote.USD.price.toFixed(decimalPlaces)}
         change24hr={fav.quote.USD.percent_change_24h.toFixed(2)}
         id={fav.id}
         marketCap={fav.quote.USD.market_cap.toFixed(2)}
       />
-    ));
+    });
     return (
       <div className="FavoriteList">
         { favs }
