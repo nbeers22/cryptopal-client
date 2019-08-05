@@ -103,7 +103,7 @@ export default class Dashboard extends Component {
         <section className="dashboard-favorites">
          {  !favorites.length
             ? emptyDashboard
-            : <FavoriteList favorites={favorites} /> 
+            : <FavoriteList favorites={favorites} getUserFavorites={this.getUserFavorites} /> 
          }
         </section>
 
