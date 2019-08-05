@@ -48,7 +48,7 @@ class Favorite extends Component {
             <Link to="#" onClick={this.handleRemoveFavorite} className="removeFav" data-id={id} title="Remove from favorites"><FontAwesomeIcon icon={faTimesCircle} /></Link>
           </aside>
         </div>
-        <img src={logo} alt={name} />
+        <img className="Favorite-logo" src={logo} alt={name} />
         <h2>{ name }</h2>
         <h3>${ price }</h3>
         <p className={color}>%{ change24hr } <FontAwesomeIcon icon={arrow} /></p>
