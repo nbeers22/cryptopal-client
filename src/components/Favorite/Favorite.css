@@ -10,6 +10,27 @@
 .Favorite h2{
   margin-top: 0;
 }
+.Favorite-options{
+  display: flex;
+  margin-bottom: 20px;
+}
+.Favorite-options aside{
+  flex: 0 0 50%;
+}
+.Favorite-options .options-left{
+  text-align: left;
+}
+.Favorite-options .options-right{
+  text-align: right;
+}
+.Favorite-options .options-right button{
+  border: 0;
+  padding: 0;
+}
+.Favorite-options .svg-inline--fa{
+  font-size: 1.2em;
+  color: #333;
+}
 .green{
   color: green;
 }
