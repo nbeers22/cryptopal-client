@@ -1,27 +1,59 @@
-import React from 'react'
+import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faLongArrowAltDown, faLongArrowAltUp } from '@fortawesome/free-solid-svg-icons'
+import { faLongArrowAltDown, faLongArrowAltUp, faInfoCircle, faTimesCircle } from '@fortawesome/free-solid-svg-icons'
+import TokenService from '../../services/token-service.js'
 import './Favorite.css'
 
-const Favorite = props => {
-  const { rank, logo, name, price, change24hr, id, marketCap } = props;
-  let arrow, color;
-  if(+change24hr > 0){
-    arrow = faLongArrowAltUp
-    color = "green"
-  }else{
-    arrow = faLongArrowAltDown
-    color = "red"
+class Favorite extends Component {
+
+  constructor(props){
+    super(props);
   }
 
-  return (
-    <div className="Favorite">
-      <h2>{ name }</h2>
-      <h3>${ price }</h3>
-      <p className={color}>%{ change24hr } <FontAwesomeIcon icon={arrow} /></p>
-    </div>
-  )
+  getClosest(elem, selector) {
+    for ( ; elem && elem !== document; elem = elem.parentNode ) {
+      if ( elem.matches( selector ) ) return elem;
+    }
+    return null;
+  };
+
+  handleRemoveFavorite = event => {
+    event.preventDefault();
+    const authToken = TokenService.getAuthToken();
+    const parentLink = this.getClosest(event.target,'.removeFav')
+    const id = parentLink.dataset.id;
+    this.props.removeFavorite(id,authToken);
+  }
+
+  render(){
+
+    const { rank, logo, name, price, change24hr, id, marketCap } = this.props;
+    let arrow, color;
+    if(+change24hr > 0){
+      arrow = faLongArrowAltUp
+      color = "green"
+    }else{
+      arrow = faLongArrowAltDown
+      color = "red"
+    }
+
+    return (
+      <div id={`Favorite-${id}`} className="Favorite">
+        <div className="Favorite-options">
+          <aside className="options-left">
+            <Link to={`/coins/${id}`} title="Go to coin's page"><FontAwesomeIcon icon={faInfoCircle} /></Link>
+          </aside>
+          <aside className="options-right">
+            <Link to="#" onClick={this.handleRemoveFavorite} className="removeFav" data-id={id} title="Remove from favorites"><FontAwesomeIcon icon={faTimesCircle} /></Link>
+          </aside>
+        </div>
+        <h2>{ name }</h2>
+        <h3>${ price }</h3>
+        <p className={color}>%{ change24hr } <FontAwesomeIcon icon={arrow} /></p>
+      </div>
+    )
+  }
 }
 
 export default Favorite;
