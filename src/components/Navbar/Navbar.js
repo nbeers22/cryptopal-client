@@ -13,7 +13,7 @@ function Navbar(props) {
   if(window.sessionStorage.getItem('cryptopal-client-auth-token')){
     navbarItems = 
       <ul>
-        <li><a href="#" aria-haspopup="true"><img src={ gravatarURL } alt={ userName } /> <span className="name">{ userName } <FontAwesomeIcon icon={faCaretDown} /></span></a>
+        <li><a href="/account" aria-haspopup="true"><img src={ gravatarURL } alt={ userName } /> <span className="name">{ userName } <FontAwesomeIcon icon={faCaretDown} /></span></a>
           <ul className="dropdown" aria-label="submenu">
             <li><Link to="/dashboard">Dashboard</Link></li>
             <li><Link to="/account">Edit Account</Link></li>
