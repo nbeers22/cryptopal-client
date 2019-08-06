@@ -98,7 +98,7 @@ export default class PriceGraph extends Component {
   setGraphData(data){
     const xaxisCats = [];
     const yaxisPrices = [];
-    const priceData = data.prices.forEach( (day,index) => {
+    data.prices.forEach( (day,index) => {
       const dateStr = new Date(day[0]);
       const date = dateStr.toLocaleString();
       yaxisPrices.push(day[1].toFixed(2))
