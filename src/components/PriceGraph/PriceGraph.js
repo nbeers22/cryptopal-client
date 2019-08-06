@@ -65,17 +65,9 @@ export default class PriceGraph extends Component {
   }
 
   componentWillReceiveProps(props){
-    const url = `${config.API_URL}/coins/${props.slug}/history/${this.state.numDays}`;
     this.setState({
       coinSlug: props.slug
-    });
-    fetch(url)
-    .then( response => {
-      return response.ok
-        ? response.json()
-        : console.log(response)
-    })
-    .then( data => this.setGraphData(data))
+    },this.getGraphData );
   }
 
   handleButtonClick = event => {
@@ -90,14 +82,17 @@ export default class PriceGraph extends Component {
   }
 
   getGraphData(numDays){
-    const url = `${config.API_URL}/coins/${this.state.coinSlug}/history/${this.state.numDays}`;
+    const url = `${config.API_URL}/coins/${this.state.coinSlug}/history/${this.state.numDays || numDays}`;
+    
     fetch(url)
     .then( response => {
       return response.ok
         ? response.json()
         : console.log(response)
     })
-    .then( data => this.setGraphData(data))
+    .then( data => {
+      this.setGraphData(data)
+    })
   }
 
   setGraphData(data){
