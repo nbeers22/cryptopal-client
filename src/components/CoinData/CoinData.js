@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { withRouter } from 'react-router-dom'
 import SocialLinks from '../SocialLinks/SocialLinks.js'
 import PriceGraph from '../PriceGraph/PriceGraph.js'
+import Converter from '../Converter/Converter.js'
 import config from '../../config.js'
 import './CoinData.css'
 
@@ -82,33 +83,37 @@ class CoinData extends Component {
     
     return (
       <div className="CoinData">
-        <div className="container">
-          <section className="CoinData-hero">
+        <section className="CoinData-hero">
+          <div className="container">
             <img src={logo} alt=""/>
             <h1>{`${name} (${symbol})`}</h1>
-            <p>{`Rank #${cmc_rank}`}</p>
+            <span className="rank">{`Rank #${cmc_rank}`}</span>
             <SocialLinks
               twitter={urls.twitter[0]}
               reddit={urls.reddit[0]} />
             <p className="description">{description}</p>
-          </section>
-          <section className="CoinData-info">
-            <div className="container">
-              <aside className="coin-links">
-                <h3>Links</h3>
-                <p><a href={urls.website} target="_blank">Website</a></p>
-                <p><a href={urls.website}>Website</a></p>
-                <p><a href={urls.website}>Website</a></p>
-                <p><a href={urls.website}>Website</a></p>
-              </aside>
-            </div>
-          </section>
-          <section className="price-history">
-            <div className="container">
-              <PriceGraph slug={slug} />
-            </div>
-          </section>
-        </div>
+          </div>
+        </section>
+        <section className="CoinData-info">
+          <div className="container">
+            <aside className="coin-links">
+              <h3>Links</h3>
+              <p><a href={urls.website} target="_blank">Website</a></p>
+              <p><a href={urls.website}>Website</a></p>
+              <p><a href={urls.website}>Website</a></p>
+              <p><a href={urls.website}>Website</a></p>
+            </aside>
+          </div>
+        </section>
+        <Converter 
+          symbol={symbol}
+          valueUSD={quote.USD.price}
+        />
+        <section className="price-history">
+          <div className="container">
+            <PriceGraph slug={slug} />
+          </div>
+        </section>
       </div>
     )
   }
