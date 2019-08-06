@@ -7,10 +7,6 @@ import './Favorite.css'
 
 class Favorite extends Component {
 
-  constructor(props){
-    super(props);
-  }
-
   getClosest(elem, selector) {
     for ( ; elem && elem !== document; elem = elem.parentNode ) {
       if ( elem.matches( selector ) ) return elem;

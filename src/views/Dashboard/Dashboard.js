@@ -108,7 +108,7 @@ class Dashboard extends Component {
       <div className="empty">
         <h3>Dashboard much empty</h3>
         <img src={sadFace} alt="Dashboard Empty (Sad Face)"/>
-        <p>Why not <a href="#" onClick={this.showModal}>add a coin</a>?</p>
+        <p>Why not <a href="/#" onClick={this.showModal}>add a coin</a>?</p>
       </div>
 
     return (
