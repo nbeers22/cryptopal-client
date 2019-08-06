@@ -98,7 +98,7 @@ class CoinData extends Component {
           <div className="container">
             <aside className="coin-links">
               <h3>Links</h3>
-              <p><a href={urls.website} target="_blank">Website</a></p>
+              <p><a href={urls.website} target="_blank" rel="noopener noreferrer">Website</a></p>
               <p><a href={urls.website}>Website</a></p>
               <p><a href={urls.website}>Website</a></p>
               <p><a href={urls.website}>Website</a></p>
