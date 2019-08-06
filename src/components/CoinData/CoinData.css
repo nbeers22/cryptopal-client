@@ -19,6 +19,12 @@
 .CoinData .twitter path{
   fill: #1DA1F2
 }
+.CoinData .rank{
+  background-color: #333;
+  color: #FFF;
+  padding: 5px 10px;
+  border-radius: 3px;
+}
 .CoinData .description{
   width: 90%;
   max-width: 700px;
