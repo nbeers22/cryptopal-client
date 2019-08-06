@@ -1,7 +1,4 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faPlusSquare } from '@fortawesome/free-solid-svg-icons'
 import config from '../../config.js';
 import plusSignImg from './images/plus-sign.png';
 
@@ -78,6 +75,8 @@ export default class SearchCoins extends Component {
               </span>
             </li>
           )
+        }else{
+          return "";
         }
       });
 
