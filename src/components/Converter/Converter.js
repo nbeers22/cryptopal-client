@@ -39,7 +39,7 @@ export default class Converter extends Component {
   }
 
   render() {
-    const { symbol, valueUSD } = this.state;
+    const { symbol } = this.state;
 
     return (
       <section className="Converter">
