@@ -1,6 +1,5 @@
-import React, { Component } from 'react'
+import React from 'react'
 import CoinData from '../../components/CoinData/CoinData.js'
-import config from '../../config.js'
 
 function CoinsShow() {
   return (
