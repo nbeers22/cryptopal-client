@@ -1,0 +1,50 @@
+.Converter{
+  background-color: #CCC;
+}
+.Converter form{
+  display: flex;
+  margin: 0 auto;
+  max-width: 500px;
+  justify-content: center;
+}
+.Converter-block{
+  margin: 10px;
+  display: flex;
+}
+.Converter-block label{
+  background-color: #EEE;
+  padding: 10px;
+}
+.Converter-block input{
+  background-color: #FFF;
+  padding: 5px 10px;
+  border: 0;
+  font-size: 16px;
+  -moz-appearance:textfield;
+}
+.Converter-block input::-webkit-outer-spin-button,
+.Converter-block input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+.Converter-block svg{
+  font-size: 2em;
+}
+@media(min-width: 641px){
+  .Converter-block .show-mobile{
+    display: none;
+  }
+}
+
+@media(max-width: 640px){
+  .Converter form{
+    flex-wrap: wrap;
+  }
+  .Converter-block{
+    flex: 0 0 100%;
+    justify-content: center;
+  }
+  .Converter-block .hide-mobile{
+    display: none;
+  }
+}
