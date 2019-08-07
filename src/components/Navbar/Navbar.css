@@ -13,9 +13,18 @@ nav img{
   width: 80%;
   align-items: center;
 }
+.top-bar-left a{
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+.nav-logo{
+  width: 40px;
+  height: 40px;
+}
 .top-bar-right{
   width: 20%;
-  min-width: 200px;
+  min-width: 300px;
   position: relative;
 }
 .top-bar-right ul{
@@ -28,12 +37,19 @@ nav img{
   color: #FFF;
   text-decoration: none;
 }
+.top-bar-right img{
+  margin-right: 5px;
+}
+.top-bar-right svg path{
+  color: #FFF;
+}
 .name{
   position: relative;
   bottom: 10px;
+  color: #FFF;
 }
-li {
-  display: block;
+.top-bar-right > ul > li {
+  display: inline-block;
   transition-duration: 0.5s;
 }
 li:hover {

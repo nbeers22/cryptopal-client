@@ -27,7 +27,7 @@ class Dashboard extends Component {
   }
   
   componentWillUnmount(){
-    this.removeModalBackground();
+    this.state.modalVisible && this.removeModalBackground()
   }
 
   checkLoggedIn(){
@@ -76,6 +76,8 @@ class Dashboard extends Component {
     .then(res => {
       if(res.error === "Token Expired"){
         this.props.history.push('/login')
+      }else{
+        console.log(res)
       }
     })
   }
@@ -117,7 +119,7 @@ class Dashboard extends Component {
           <h1>Welcome to your dashboard, {name}</h1>
           <p className="intro-subhead">Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur provident vero fugiat ratione recusandae libero nemo in fuga nostrum debitis, modi eaque mollitia voluptatibus ad blanditiis dolor perspiciatis inventore quisquam!</p>
           {
-            favorites.length && <button onClick={this.showModal}>Add Favorite</button>
+            favorites.length && <button className="btn-cta" onClick={this.showModal}>Add Favorite</button>
           }
         </section>
         <section className="dashboard-favorites">

@@ -2,8 +2,9 @@ import React from 'react';
 import { Link, withRouter } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCaretDown } from '@fortawesome/free-solid-svg-icons'
-import './Navbar.css';
 import TokenService from '../../services/token-service';
+import logo from './images/cents-logo.png'
+import './Navbar.css';
 
 function Navbar(props) {
   let navbarItems;
@@ -15,8 +16,8 @@ function Navbar(props) {
       <ul>
         <li><a href="/account" aria-haspopup="true"><img src={ gravatarURL } alt={ userName } /> <span className="name">{ userName } <FontAwesomeIcon icon={faCaretDown} /></span></a>
           <ul className="dropdown" aria-label="submenu">
+            <li><Link to="/account">Account</Link></li>
             <li><Link to="/dashboard">Dashboard</Link></li>
-            <li><Link to="/account">Edit Account</Link></li>
             <li><Link to="/logout" onClick={logout}>Logout</Link></li>
           </ul>
         </li>
@@ -24,7 +25,6 @@ function Navbar(props) {
   }else{
     navbarItems = 
       <ul>
-        <li><Link to="/">Home</Link></li>
         <li><Link to="/signup">Sign up</Link></li>
         <li><Link to="/login">Sign in</Link></li>
       </ul>
@@ -40,7 +40,7 @@ function Navbar(props) {
     <nav role="navigation">
       <div className="container">
         <div className="top-bar-left">
-          <Link to="/"><img src="" alt="Logo"/></Link>
+          <Link to="/"><img src={logo} alt="Logo" className="nav-logo" /></Link>
         </div>
         <div className="top-bar-right">
           {navbarItems}

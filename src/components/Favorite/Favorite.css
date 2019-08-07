@@ -35,10 +35,10 @@
   font-size: 1.2em;
   color: #333;
 }
-.green{
+.green, .green path{
   color: green;
 }
-.red{
+.red, .red path{
   color: red;
 }
 

@@ -76,7 +76,7 @@ export default class FavoriteList extends Component {
         price={+fav.quote.USD.price.toFixed(decimalPlaces)}
         change24hr={fav.quote.USD.percent_change_24h.toFixed(2)}
         id={fav.id}
-        marketCap={fav.quote.USD.market_cap.toFixed(2)}
+        marketCap={fav.quote.USD.market_cap}
         removeFavorite={this.removeFavorite}
         slug={fav.slug}
       />
