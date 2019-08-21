@@ -7,9 +7,7 @@ export default function CoinsIndex() {
       <div className="container">
         <h1>Coin List</h1>
       </div>
-      <section className="coin-list">
-        <CoinList />
-      </section>
+      <CoinList />
     </div>
   )
 }
