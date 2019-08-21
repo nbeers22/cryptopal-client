@@ -1,0 +1,16 @@
+.RedditFeedEntry {
+  margin-bottom: 25px;
+}
+.RedditFeedEntry:last-of-type {
+  margin-bottom: 0;
+}
+.RedditFeedEntry p{
+  margin-top: 5px;
+}
+.RedditFeedEntry a{
+  color: #336699;
+}
+.RedditFeedEntry time{
+  font-size: 0.875rem;
+  font-style: italic;
+}
