@@ -38,13 +38,17 @@ class Favorite extends Component {
       <div id={`Favorite-${id}`} className="Favorite">
         <div className="Favorite-options">
           <aside className="options-left">
-            <Link to={`/coins/${id}`} title="Go to coin's page"><FontAwesomeIcon icon={faInfoCircle} /></Link>
+            <Link to={`/coins/${id}`} title={`More information about ${name}`}>
+              <FontAwesomeIcon icon={faInfoCircle} />
+            </Link>
           </aside>
           <aside className="options-right">
             <Link to="#" onClick={this.handleRemoveFavorite} className="removeFav" data-id={id} title="Remove from favorites"><FontAwesomeIcon icon={faTimesCircle} /></Link>
           </aside>
         </div>
-        <img className="Favorite-logo" src={logo} alt={name} />
+        <Link to={`/coins/${id}`} title={`More information about ${name}`}>
+          <img className="Favorite-logo" src={logo} alt={name} />
+        </Link>
         <h2>{ name }</h2>
         <h3>${ price }</h3>
         <p className={color}>%{ change24hr } <FontAwesomeIcon icon={arrow} /></p>
