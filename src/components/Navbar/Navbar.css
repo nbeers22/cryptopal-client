@@ -89,3 +89,8 @@ ul li ul li a:hover{
 li:focus-within a {
   outline: none;
 }
+@media(max-width: 360px){
+  .top-bar-right{
+    min-width: 250px;
+  }
+}
