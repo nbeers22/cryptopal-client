@@ -8,6 +8,7 @@ import CoinsShow from './views/CoinsShow/CoinsShow.js';
 import SignUp from './views/SignUp/SignUp.js';
 import SignIn from './views/SignIn/SignIn.js';
 import Dashboard from './views/Dashboard/Dashboard.js';
+import EditAccount from './views/EditAccount/EditAccount.js'
 import NoMatch from './views/NoMatch/NoMatch.js';
 import './App.css';
 
@@ -22,6 +23,7 @@ function App() {
           <Route path="/signup" component={SignUp} />
           <Route path="/login" component={SignIn} />
           <Route path="/dashboard" component={Dashboard} />
+          <Route path="/account" component={EditAccount} />
           <Route component={NoMatch} />
         </Switch>
       <Footer />
