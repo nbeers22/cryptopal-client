@@ -9,12 +9,22 @@
 }
 .rTableCell, .rTableHead{
   display: table-cell;
-  padding: 3px 10px;
-  border: 1px solid #999999;
+  padding: 1rem 0.625rem;
+  border-bottom: 1px solid #999999;
 }
 .rTableBody{
   display: table-row-group;
 }
 .rTableRow{
   display: table-row;
+}
+.rTableFlex{
+  display: flex;
+  align-items: center;
+}
+.rTableFlex img {
+  margin-right: 10px;
+}
+.table-logo{
+  width: 25px;
 }
