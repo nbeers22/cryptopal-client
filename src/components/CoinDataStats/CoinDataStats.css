@@ -1,0 +1,20 @@
+.CoinData-stats{
+  background-color: #fff;
+}
+.CoinData-stats .stats-table{
+  display: flex;
+}
+.CoinData-stats aside{
+  flex-grow: 1;
+  text-align: center;
+}
+
+@media(max-width: 767px){
+  .CoinData-stats .stats-table{
+    flex-wrap: wrap;
+  }
+  .CoinData-stats aside{
+    flex: 0 0 50%;
+    margin-bottom: 30px;
+  }
+}
