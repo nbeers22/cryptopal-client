@@ -6,7 +6,7 @@ function FlashMessage(props){
 
   return(
     <div className={"FlashMessage" + (props.error ? " error" : " success")}>
-      { props.message } { !props.error && <Link to="/login">log in</Link>}
+      { props.message } { !props.error && props.login && <Link to="/login">log in</Link>}
     </div>
   )
 }
