@@ -7,6 +7,9 @@ const TokenService = {
     window.sessionStorage.setItem("name", data.name)
     window.sessionStorage.setItem("gravatar", data.gravatar)
   },
+  saveName(data){
+    window.sessionStorage.setItem("name", data.name)
+  },
   getAuthToken() {
     return window.sessionStorage.getItem(config.TOKEN_KEY)
   },
