@@ -16,6 +16,7 @@ function Navbar(props) {
       <ul>
         <li><a href="/account" aria-haspopup="true"><img src={ gravatarURL } alt={ userName } /> <span className="name">{ userName } <FontAwesomeIcon icon={faCaretDown} /></span></a>
           <ul className="dropdown" aria-label="submenu">
+            <li><Link to="/coins">All Coins</Link></li>
             <li><Link to="/account">Account</Link></li>
             <li><Link to="/dashboard">Dashboard</Link></li>
             <li><Link to="/logout" onClick={logout}>Logout</Link></li>
@@ -25,6 +26,7 @@ function Navbar(props) {
   }else{
     navbarItems = 
       <ul>
+        <li><Link to="/coins">All Coins</Link></li>
         <li><Link to="/signup">Sign up</Link></li>
         <li><Link to="/login">Sign in</Link></li>
       </ul>
