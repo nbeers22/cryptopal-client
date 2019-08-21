@@ -36,7 +36,7 @@ export default class PriceGraph extends Component {
           curve: 'straight'
         },
         title: {
-          text: `Price History`,
+          text: ``,
           align: 'center',
           num: 20
         },
@@ -46,13 +46,14 @@ export default class PriceGraph extends Component {
             opacity: 0.5
           },
         },
+        colors: ['#23697a'],
         xaxis: {
           categories: [],
         },
         yaxis: {
           labels: {
             formatter: function (value) {
-              return `$${value}`;
+              return `$${value.toFixed(2)}`;
             }
           },
         },
@@ -117,14 +118,26 @@ export default class PriceGraph extends Component {
   }
 
   render() {
+
+    const buttons = [
+      { num: 1, time: "Day" },
+      { num: 7, time: "Days" },
+      { num: 14, time: "Days" },
+      { num: 30, time: "Days" }
+    ]
+    const btnGroup = buttons.map( (btn, i) => (
+      <button
+        key={i}
+        className={btn.num === 30 ? 'active' : undefined}
+        data-days={btn.num}
+        onClick={this.handleButtonClick}>{`${btn.num} ${btn.time}`}
+      </button>
+    ))
     
     return (
       <div className="PriceGraph">
         <div className="btn-group">
-          <button data-days={1} onClick={this.handleButtonClick}>24 Hours</button>
-          <button data-days={7} onClick={this.handleButtonClick}>7 Days</button>
-          <button data-days={14} onClick={this.handleButtonClick}>14 Days</button>
-          <button data-days={30} onClick={this.handleButtonClick} className="active">30 Days</button>
+          { btnGroup }
         </div>
         <div id="chart">
           <ReactApexChart options={this.state.options} series={this.state.series} type="line" height="350" />
