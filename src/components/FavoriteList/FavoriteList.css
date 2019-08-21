@@ -2,3 +2,21 @@
   display: flex;
   flex-wrap: wrap;
 }
+.Favorite:last-of-type{
+  position: relative;
+  cursor: pointer;
+}
+.Favorite .add-fav{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+}
+.Favorite:last-of-type svg{
+  font-size: 4rem;
+  margin-bottom: 5px;
+}
+.Favorite:last-of-type svg path{
+  fill: #23697a;
+  color: #23697a;
+}
