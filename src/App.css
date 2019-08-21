@@ -5,15 +5,24 @@
 }
 h1,h2,h3,h4,h5,h6{
   font-family: 'Montserrat', sans-serif;
+  margin-top: 0;
 }
 body{
   font-size: 16px;
   background-color: #F9F9F9;
 }
+a{
+  text-decoration: none;
+}
+.btn-cta a{
+  color: #FFF;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
 .btn-cta{
   color: #fff;
-  background-color: #007bff;
-  border-color: #007bff;
+  background-color: #23697a;
+  border-color: #EFA22C;
   border-radius: 3px;
   border: 1px solid transparent;
   padding: .375rem .75rem;
@@ -22,14 +31,22 @@ body{
   border-radius: .25rem;
   text-decoration: none;
   cursor: pointer;
+  text-transform: uppercase;
+  letter-spacing: 1px;
   transition: all 0.25s ease-in-out
 }
 .btn-cta:hover{
-  background-color: #0069d9;
-  border-color: #0062cc;
+  border-color:rgba(35, 105, 122, 0.9);
+  background-color:rgba(35, 105, 122, 0.9);
 }
 .container{
   max-width: 1200px;
   padding: 0 15px;
   margin: 0 auto;
+}
+input[type=text],input[type=email],input[type=number],input[type=password]{
+  height: 35px;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #aaa;
 }
