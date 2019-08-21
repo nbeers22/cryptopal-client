@@ -19,7 +19,8 @@ export default class SearchCoins extends Component {
         : console.log(response.statusText)
     })
     .then( responseJson => {
-      this.mapCoinData(responseJson.data)
+      if(responseJson)
+        this.mapCoinData(responseJson.data)
     })
     .catch( error => alert(error))
   }
@@ -45,7 +46,9 @@ export default class SearchCoins extends Component {
 
   searchCoins(searchTerm){
     const foundCoins = this.state.coins.filter( coin => {
-      return coin.name.toLowerCase().includes(searchTerm.toLowerCase())
+      return coin.name
+              .toLowerCase()
+              .includes(searchTerm.toLowerCase())
     });
     this.setState({ foundCoins });
   }
@@ -83,7 +86,7 @@ export default class SearchCoins extends Component {
     return (
       <div className="SearchCoins">
         <form>
-          <label htmlFor="search-coins">Search Coins</label>
+          <label htmlFor="search-coins"><h3>Search Coins</h3></label>
           <input
             id="search-coins"
             type="text"
