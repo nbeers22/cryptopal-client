@@ -34,7 +34,6 @@ export default class SignUpForm extends Component {
     })
     .then( response => response.json() )
     .then( data => {
-      console.log(data);
       if(data.error){
         this.setState({
           showFlashMessage: true,
@@ -68,7 +67,7 @@ export default class SignUpForm extends Component {
     return (
       <section className="SignUpForm">
         <div className="container">
-        { showFlashMessage && <FlashMessage message={flashMessage} error={submitError} /> }
+        { showFlashMessage && <FlashMessage message={flashMessage} error={submitError} login={true} /> }
           <div className="page-meta">
             <h1>Sign Up</h1>
             <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Laboriosam quisquam fugiat quae expedita, vero distinctio non quo error eveniet repellat illo qui id facilis aliquam itaque veritatis magni. Quisquam, fugiat!</p>
