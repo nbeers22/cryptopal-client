@@ -1,24 +1,6 @@
 .CoinData-hero{
   text-align: center;
 }
-.CoinData .social{
-  list-style-type: none;
-  padding-left: 0;
-  display: flex;
-  justify-content: center
-}
-.CoinData .social li{
-  margin: 0 10px;
-}
-.CoinData .social svg{
-  font-size: 2em;
-}
-.CoinData .reddit path{
-  fill: #FF4301
-}
-.CoinData .twitter path{
-  fill: #1DA1F2
-}
 .CoinData .rank{
   background-color: #333;
   color: #FFF;
@@ -30,4 +12,72 @@
   max-width: 700px;
   margin: 0 auto;
   text-align: left;
+}
+.CoinData .price-history{
+  padding-bottom: 0;
+  background-color: #EEE;
+}
+.CoinData .price-history h2{
+  margin-bottom: 50px;
+}
+.CoinData-info .container{
+  display: flex;
+  justify-content: center;
+}
+.CoinData-info .container aside{
+  margin: 0 15px;
+}
+.CoinData-info .coin-links{
+  flex: 0 0 40%;
+}
+.CoinData-info .reddit-feed{
+  flex: 0 0 60%;
+  border: 1px solid #AAA;
+  border-radius: 3px;
+}
+.CoinData-info header{
+  background-color: #CEE3F8;
+  padding: 20px 30px;
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+}
+.CoinData-info header h4{
+  margin: 0;
+}
+.CoinData-info header svg{
+  margin-right: 10px;
+  font-size: 1.5rem;
+}
+.CoinData-info .feed-data{
+  padding: 30px;
+  background-color: #fff;
+}
+.coin-links td{
+  padding: 10px;
+}
+.coin-links td a{
+  text-transform: none;
+  font-size: 14px;
+}
+.gold path{
+  color: #FEE101;
+}
+.silver path{
+  color: #A7A7AD;
+}
+.bronze path{
+  color: #A77044;
+}
+
+@media(max-width: 767px){
+  .CoinData-info .container{
+    flex-wrap: wrap;
+  }
+  .CoinData-info .container aside{
+    flex: 0 0 100%;
+    max-width: 100%;
+    margin: 15px 0;
+    overflow: auto;
+  }
 }
