@@ -48,7 +48,7 @@ export default class Converter extends Component {
             <label htmlFor="coin-input">{ symbol }</label>
             <input id="coin-input" type="number" onChange={this.convertToUSD} />
           </div>
-          <div className="Converter-block">
+          <div className="Converter-block" style={{ alignItems: "center" }}>
             <span className="hide-mobile"><FontAwesomeIcon icon={faArrowsAltH} /></span>
             <span className="show-mobile"><FontAwesomeIcon icon={faArrowsAltV} /></span>
           </div>
