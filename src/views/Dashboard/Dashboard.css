@@ -4,6 +4,12 @@
 .intro{
   text-align: center;
 }
+.dashboard-favorites{
+  padding-top: 0;
+}
+.dashboard-favorites h2{
+  text-align: center;
+}
 .dashboard-favorites img{
   width: 300px;
 }
@@ -11,8 +17,15 @@
   text-align: center;
 }
 .modal-open{
-  position: absolute;
+  position: fixed;
   height: 100%;
   width: 100%;
   background-color: rgba(0,0,0,0.8);
+  z-index: 1;
+}
+
+@media(min-width: 768px){
+  .add-coin-btn{
+    display: none;
+  }
 }
