@@ -1,0 +1,29 @@
+.EditAccountForm{
+  display: flex;
+  width: 90%;
+  max-width: 800px;
+  margin: 0 auto;
+}
+.EditAccountForm .form{
+  flex: 0 0 50%;
+  padding: 0 20px;
+}
+.EditAccountForm .form input[type=text],
+.EditAccountForm .form input[type=password]{
+  max-width: 100%;
+  width: 100%;
+}
+.EditAccountForm .form h3,
+.EditAccountForm .form .form-group{
+  margin: 0 auto 20px;
+}
+
+@media(max-width: 767px){
+  .EditAccountForm{
+    flex-wrap: wrap;
+  }
+  .EditAccountForm .form{
+    flex: 0 0 100%;
+    padding: 20px 0;
+  } 
+}
