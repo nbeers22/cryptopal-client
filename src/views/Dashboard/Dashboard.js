@@ -33,14 +33,16 @@ class Dashboard extends Component {
   checkLoggedIn(){
     const token = TokenService.getAuthToken();
     if(!token){
-      this.setState({ loggedIn: false },() => console.log('constructor'))
+      this.setState({ loggedIn: false })
     }
   }
 
-  showModal = () => {
-    const div = document.createElement("div");
+  showModal = event => {
+    event.preventDefault()
+    const div = document.createElement("div")
     div.classList.add('modal-open')
     document.body.insertBefore(div, document.body.firstChild);
+    div.addEventListener('click',this.hideModal)
     this.setState({ modalVisible: true })
   }
   
@@ -59,7 +61,7 @@ class Dashboard extends Component {
     const authToken = TokenService.getAuthToken();
 
     fetch(url,{
-      method: 'PATCH',
+      method: 'POST',
       headers: {
         'content-type': 'application/json',
         'Authorization': `Bearer ${authToken}`
@@ -74,10 +76,12 @@ class Dashboard extends Component {
       }
     })
     .then(res => {
-      if(res.error === "Token Expired"){
-        this.props.history.push('/login')
-      }else{
-        console.log(res)
+      if(res){
+        if(res.error === "Token Expired"){
+          this.props.history.push('/login')
+        }else{
+          console.log(res)
+        }
       }
     })
   }
@@ -93,10 +97,12 @@ class Dashboard extends Component {
         : alert(response.statusText)
     })
     .then( data => {
-      if(data.favorites !== null){
-        this.setState({
-          favorites: data.favorites
-        })
+      if(data){
+        if(data.favorites !== null){
+          this.setState({
+            favorites: data.favorites
+          })
+        }
       }
     })
   }
@@ -108,29 +114,39 @@ class Dashboard extends Component {
     const { name, modalVisible, favorites } = this.state;
     const emptyDashboard = 
       <div className="empty">
-        <h3>Dashboard much empty</h3>
+        <h3>Your dashboard looks empty</h3>
+        <p>Why not <a href="/#" onClick={this.showModal} style={{ borderBottom: '1px solid #333' }}>add a coin</a>?</p>
         <img src={sadFace} alt="Dashboard Empty (Sad Face)"/>
-        <p>Why not <a href="/#" onClick={this.showModal}>add a coin</a>?</p>
       </div>
 
     return (
       <div className="Dashboard">
         <section className="intro">
-          <h1>Welcome to your dashboard, {name}</h1>
-          <p className="intro-subhead">Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur provident vero fugiat ratione recusandae libero nemo in fuga nostrum debitis, modi eaque mollitia voluptatibus ad blanditiis dolor perspiciatis inventore quisquam!</p>
-          {
-            favorites.length && <button className="btn-cta" onClick={this.showModal}>Add Favorite</button>
-          }
+          <div className="container">
+            <h1>Welcome to your dashboard, {name}</h1>
+            <p className="intro-subhead">Here you can keep up with all your favorite coins in one place without having to sift through hundreds of others. Click below if you would like to add favorites to your dashboard.</p>
+            {
+              favorites.length > 0
+                && <button className="btn-cta add-coin-btn" onClick={this.showModal}>Add Favorite</button>
+            }
+          </div>
         </section>
         <section className="dashboard-favorites">
-         {  !favorites.length
-            ? emptyDashboard
-            : <FavoriteList favorites={favorites} getUserFavorites={this.getUserFavorites} /> 
-         }
+         <div className="container">
+          { !favorites.length
+              ? emptyDashboard
+              : <FavoriteList
+                  favorites={favorites}
+                  getUserFavorites={this.getUserFavorites}
+                  showModal={this.showModal}
+                /> 
+          }
+         </div>
         </section>
 
         { modalVisible 
           && <SearchModal
+                class={modalVisible ? " open" : undefined}
                 closeModal={() => this.hideModal()}
                 addFavorite={this.addToFavorites}
               />
