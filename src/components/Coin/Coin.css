@@ -1,0 +1,14 @@
+.rTableCell svg, .rTableCell path{
+  cursor: pointer;
+}
+.rTableCell svg path{
+  fill: none;
+  stroke: #333;
+  stroke-width: 70px;
+  stroke-dasharray: 2,2;
+  stroke-linejoin: round;
+}
+.rTableCell.isFavorite svg path{
+  fill: #FEE101;
+  stroke: #FEE101;
+}
