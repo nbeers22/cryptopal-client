@@ -1,4 +1,6 @@
 import React, { Component } from 'react'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faSearchPlus } from '@fortawesome/free-solid-svg-icons'
 import config from '../../config.js'
 import Favorite from '../Favorite/Favorite.js';
 import './FavoriteList.css'
@@ -82,9 +84,21 @@ export default class FavoriteList extends Component {
       />
     });
     return (
-      <div className="FavoriteList">
-        { favs }
-      </div>
+      <>
+        <h2>Favorites</h2>
+        <div className="FavoriteList">
+          { favs }
+          <div className="Favorite" onClick={(event) => this.props.showModal(event)}>
+            <aside className="add-fav">
+              <FontAwesomeIcon
+                icon={faSearchPlus}
+                className="addFavIcon"
+              />
+              <h4>Add Favorite</h4>
+            </aside>
+          </div>
+        </div>
+      </>
     )
   }
 }
