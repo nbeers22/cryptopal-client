@@ -1,10 +1,16 @@
 import React, { Component } from 'react'
 import { withRouter } from 'react-router-dom'
-import SocialLinks from '../SocialLinks/SocialLinks.js'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faReddit } from '@fortawesome/free-brands-svg-icons'
 import PriceGraph from '../PriceGraph/PriceGraph.js'
 import Converter from '../Converter/Converter.js'
+import RedditFeedEntry from '../RedditFeedEntry/RedditFeedEntry.js';
+import CoinLinksTable from '../CoinLinksTable/CoinLinksTable.js';
+import CoinDataStats from '../CoinDataStats/CoinDataStats.js';
 import config from '../../config.js'
+import loader from '../../images/loading.gif'
 import './CoinData.css'
+import Trophy from './Trophy.js';
 
 class CoinData extends Component {
   _isMounted = false;
@@ -24,7 +30,8 @@ class CoinData extends Component {
             message_board: "",
             explorer: [],
             source_code: "",
-            chat: []
+            chat: [],
+            announcement: []
           },
           logo: "",
           symbol: "",
@@ -37,6 +44,7 @@ class CoinData extends Component {
         [this.coinID]: {
           cmc_rank: null,
           max_supply: null,
+          total_supply: null,
           circulating_supply: null,
           quote: {
             USD: {
@@ -49,7 +57,9 @@ class CoinData extends Component {
             }
           }
         }
-      }
+      },
+      redditFeed: [],
+      loadingFeed: true
     }
   }
   
@@ -68,18 +78,49 @@ class CoinData extends Component {
           this.setState({
             coinData: data[0].data,
             coinMarket: data[1].data
+          }, () => {
+            if(this.state.coinData[this.coinID].urls.reddit[0]){
+              const redditSlug = this.state.coinData[this.coinID].urls.reddit[0].split("/r/")[1]
+              this.getRedditFeed(redditSlug)
+            }
           })
         }
       })
+  }
+
+  getRedditFeed(slug){
+    const url = `${config.API_URL}/coins/${slug}/redditFeed`
+    fetch(url)
+    .then( response => {
+      return response.json()
+    })
+    .then(resJSON => {
+      this.setState({
+        redditFeed: resJSON
+      }, this.setState({ loadingFeed: false }))
+    })
   }
 
   componentWillUnmount(){
     this._isMounted = false;
   }
 
+  currencyFormat(num){
+    return num && '$' + num.toFixed(2).replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')
+  }
+
   render() {
-    const { name, urls, logo, symbol, slug, description, tags } = this.state.coinData[this.coinID];
-    const { cmc_rank, max_supply, quote } = this.state.coinMarket[this.coinID];
+    const { name, urls, logo, symbol, slug, description } = this.state.coinData[this.coinID];
+    const { cmc_rank, quote } = this.state.coinMarket[this.coinID];
+    let redditHeader = urls.reddit[0];
+    const redditFeed = this.state.redditFeed.map( (entry,i) => (
+      <RedditFeedEntry
+        title={entry.title}
+        date={entry.date}
+        link={entry.link}
+        key={i}
+      />
+    ))
     
     return (
       <div className="CoinData">
@@ -87,31 +128,49 @@ class CoinData extends Component {
           <div className="container">
             <img src={logo} alt=""/>
             <h1>{`${name} (${symbol})`}</h1>
-            <span className="rank">{`Rank #${cmc_rank}`}</span>
-            <SocialLinks
-              twitter={urls.twitter[0]}
-              reddit={urls.reddit[0]} />
+            <p><span className="rank">{cmc_rank <= 3 && <Trophy rank={cmc_rank} />} {`Rank #${cmc_rank}`}</span></p>
+            <h2>{ this.currencyFormat(quote.USD.price) }</h2>
             <p className="description">{description}</p>
           </div>
         </section>
-        <section className="CoinData-info">
+        <CoinDataStats
+          prices={quote.USD}
+        />
+        <section className="price-history">
           <div className="container">
-            <aside className="coin-links">
-              <h3>Links</h3>
-              <p><a href={urls.website} target="_blank" rel="noopener noreferrer">Website</a></p>
-              <p><a href={urls.website}>Website</a></p>
-              <p><a href={urls.website}>Website</a></p>
-              <p><a href={urls.website}>Website</a></p>
-            </aside>
+            <center><h2>Price History</h2></center>
+            <PriceGraph slug={slug} />
           </div>
         </section>
+
         <Converter 
           symbol={symbol}
           valueUSD={quote.USD.price}
         />
-        <section className="price-history">
+
+        <section className="CoinData-info">
           <div className="container">
-            <PriceGraph slug={slug} />
+            <CoinLinksTable
+              urls={urls}
+              name={name}
+            />
+            <aside className="reddit-feed-container">
+
+              {
+                !this.state.loadingFeed
+                  ? <div className="reddit-feed">
+                      <header>
+                        <FontAwesomeIcon icon={faReddit} />
+                        <h4>Feed from { typeof redditHeader === "string" && redditHeader.split("com/")[1] }</h4>
+                      </header>
+                      <div className="feed-data">
+                        { redditFeed }
+                      </div>
+                    </div>
+                  : <img src={loader} alt="Loading Reddit Feed" /> 
+              }
+              
+            </aside>
           </div>
         </section>
       </div>
