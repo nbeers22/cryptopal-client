@@ -11,6 +11,9 @@ export default class SearchCoins extends Component {
   }
 
   componentDidMount(){
+    // add initial focus to input element
+    document.getElementById("search-coins").focus()
+    // Get dashboard coins from server
     const url = `${config.API_URL}/coins/dashboard`;
     fetch(url)
     .then( response => {
@@ -37,6 +40,7 @@ export default class SearchCoins extends Component {
     })
   }
 
+    // set input value to state, then perform search
   handleCoinSearch = event => {
     const { value } = event.target;
     this.setState({ coinValue: value },
@@ -44,6 +48,7 @@ export default class SearchCoins extends Component {
     );
   }
 
+    // filter results by input value
   searchCoins(searchTerm){
     const foundCoins = this.state.coins.filter( coin => {
       return coin.name
@@ -53,6 +58,7 @@ export default class SearchCoins extends Component {
     this.setState({ foundCoins });
   }
 
+  // add coin to favorites
   favoriteCoin = event => {
     event.preventDefault();
     const { id } = event.target.dataset;
@@ -69,12 +75,14 @@ export default class SearchCoins extends Component {
             >
               <span className="found-coin-name">{ coin.name }</span>
               <span className="found-coin-fav">
-                <img
-                  src={plusSignImg}
-                  alt="Add to Favorites"
-                  onClick={this.favoriteCoin}
-                  data-id={coin.id} 
-                />
+                <button aria-label={`Add ${coin.name} to favorites`}>
+                  <img
+                    src={plusSignImg}
+                    alt="Add to Favorites"
+                    onClick={this.favoriteCoin}
+                    data-id={coin.id} 
+                  />
+                </button>
               </span>
             </li>
           )
