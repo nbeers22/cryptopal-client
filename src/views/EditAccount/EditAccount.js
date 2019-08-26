@@ -2,6 +2,8 @@ import React from 'react'
 import EditAccountForm from '../../components/EditAccountForm/EditAccountForm.js';
 
 const EditAccount = () => {
+  document.title = "Edit account information"
+
   return(
     <section className="EditAccount">
       <div className="container">
