@@ -1,0 +1,177 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Navbar Component renders the proper "logged in" links when user is logged in 1`] = `
+<nav
+  role="navigation"
+>
+  <div
+    className="container"
+  >
+    <div
+      className="top-bar-left"
+    >
+      <Link
+        to="/"
+      >
+        <img
+          alt="CryptoPal Home"
+          className="nav-logo"
+          src="cents-logo.png"
+        />
+      </Link>
+    </div>
+    <div
+      className="top-bar-right"
+    >
+      <ul>
+        <li>
+          <a
+            aria-haspopup="true"
+            href="/account"
+          >
+            <img
+              alt={null}
+              src={null}
+            />
+             
+            <span
+              className="name"
+            >
+               
+              <FontAwesomeIcon
+                border={false}
+                className=""
+                fixedWidth={false}
+                flip={null}
+                icon={
+                  Object {
+                    "icon": Array [
+                      320,
+                      512,
+                      Array [],
+                      "f0d7",
+                      "M31.3 192h257.3c17.8 0 26.7 21.5 14.1 34.1L174.1 354.8c-7.8 7.8-20.5 7.8-28.3 0L17.2 226.1C4.6 213.5 13.5 192 31.3 192z",
+                    ],
+                    "iconName": "caret-down",
+                    "prefix": "fas",
+                  }
+                }
+                inverse={false}
+                listItem={false}
+                mask={null}
+                pull={null}
+                pulse={false}
+                rotation={null}
+                size={null}
+                spin={false}
+                symbol={false}
+                title=""
+                transform={null}
+              />
+            </span>
+          </a>
+          <ul
+            aria-label="submenu"
+            className="dropdown"
+          >
+            <li
+              className="menu-item"
+            >
+              <Link
+                to="/coins"
+              >
+                All Coins
+              </Link>
+            </li>
+            <li
+              className="menu-item"
+            >
+              <Link
+                to="/account"
+              >
+                Account
+              </Link>
+            </li>
+            <li
+              className="menu-item"
+            >
+              <Link
+                to="/dashboard"
+              >
+                Dashboard
+              </Link>
+            </li>
+            <li
+              className="menu-item"
+            >
+              <Link
+                onClick={[Function]}
+                to="/logout"
+              >
+                Logout
+              </Link>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+`;
+
+exports[`Navbar Component renders the proper "not logged in" links when no user is logged in 1`] = `
+<nav
+  role="navigation"
+>
+  <div
+    className="container"
+  >
+    <div
+      className="top-bar-left"
+    >
+      <Link
+        to="/"
+      >
+        <img
+          alt="CryptoPal Home"
+          className="nav-logo"
+          src="cents-logo.png"
+        />
+      </Link>
+    </div>
+    <div
+      className="top-bar-right"
+    >
+      <ul>
+        <li
+          className="menu-item"
+        >
+          <Link
+            to="/coins"
+          >
+            All Coins
+          </Link>
+        </li>
+        <li
+          className="menu-item"
+        >
+          <Link
+            to="/signup"
+          >
+            Sign up
+          </Link>
+        </li>
+        <li
+          className="menu-item"
+        >
+          <Link
+            to="/login"
+          >
+            Sign in
+          </Link>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+`;

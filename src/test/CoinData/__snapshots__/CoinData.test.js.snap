@@ -1,0 +1,89 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CoinData Component should render content if initial data is available 1`] = `
+<div
+  className="CoinData"
+>
+  <section
+    className="CoinData-hero"
+  >
+    <div
+      className="container"
+    >
+      <img
+        alt=""
+        src=""
+      />
+      <h1>
+         ()
+      </h1>
+      <p>
+        <span
+          className="rank"
+        >
+          <Trophy
+            rank={null}
+          />
+           
+          Rank #null
+        </span>
+      </p>
+      <h2 />
+      <p
+        className="description"
+      />
+    </div>
+  </section>
+  <CoinDataStats
+    prices={
+      Object {
+        "market_cap": null,
+        "percent_change_1h": null,
+        "percent_change_24h": null,
+        "percent_change_7d": null,
+        "price": null,
+        "volume_24h": null,
+      }
+    }
+  />
+  <PriceGraph
+    slug=""
+  />
+  <Converter
+    symbol=""
+    valueUSD={null}
+  />
+  <section
+    className="CoinData-info"
+  >
+    <div
+      className="container"
+    >
+      <CoinLinksTable
+        name=""
+        urls={
+          Object {
+            "announcement": Array [],
+            "chat": Array [],
+            "explorer": Array [],
+            "message_board": "",
+            "reddit": "",
+            "source_code": "",
+            "technical_doc": "",
+            "twitter": "",
+            "website": "",
+          }
+        }
+      />
+      <aside
+        className="reddit-feed-container"
+      >
+        <img
+          alt="Loading Reddit Feed"
+          src="loading.gif"
+        />
+      </aside>
+    </div>
+  </section>
+</div>
+`;

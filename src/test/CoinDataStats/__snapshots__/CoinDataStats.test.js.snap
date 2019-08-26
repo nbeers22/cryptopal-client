@@ -1,0 +1,537 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CoinDataStats Component first column text should be "Market Cap$1.00" when props are set to 1 1`] = `
+<section
+  className="CoinData-stats"
+>
+  <div
+    className="container"
+  >
+    <div
+      className="stats-table"
+    >
+      <aside>
+        <p>
+          <strong>
+            Market Cap
+          </strong>
+        </p>
+        $1.00
+      </aside>
+      <aside>
+        <p>
+          <strong>
+            Change 1hr
+          </strong>
+        </p>
+        <span
+          className="red"
+        >
+          0.00%
+        </span>
+      </aside>
+      <aside>
+        <p>
+          <strong>
+            Change 24hr
+          </strong>
+        </p>
+        <span
+          className="red"
+        >
+          0.00%
+        </span>
+      </aside>
+      <aside>
+        <p>
+          <strong>
+            Change 7d
+          </strong>
+        </p>
+        <span
+          className="red"
+        >
+          0.00%
+        </span>
+      </aside>
+      <aside>
+        <p>
+          <strong>
+            Volume 24hr
+          </strong>
+        </p>
+        0
+      </aside>
+    </div>
+  </div>
+</section>
+`;
+
+exports[`CoinDataStats Component first column text should be "Market Cap0" when no props are set 1`] = `
+<section
+  className="CoinData-stats"
+>
+  <div
+    className="container"
+  >
+    <div
+      className="stats-table"
+    >
+      <aside>
+        <p>
+          <strong>
+            Market Cap
+          </strong>
+        </p>
+        0
+      </aside>
+      <aside>
+        <p>
+          <strong>
+            Change 1hr
+          </strong>
+        </p>
+        <span
+          className="red"
+        >
+          0.00%
+        </span>
+      </aside>
+      <aside>
+        <p>
+          <strong>
+            Change 24hr
+          </strong>
+        </p>
+        <span
+          className="red"
+        >
+          0.00%
+        </span>
+      </aside>
+      <aside>
+        <p>
+          <strong>
+            Change 7d
+          </strong>
+        </p>
+        <span
+          className="red"
+        >
+          0.00%
+        </span>
+      </aside>
+      <aside>
+        <p>
+          <strong>
+            Volume 24hr
+          </strong>
+        </p>
+        0
+      </aside>
+    </div>
+  </div>
+</section>
+`;
+
+exports[`CoinDataStats Component renders a div with className ".stats-table" 1`] = `
+<section
+  className="CoinData-stats"
+>
+  <div
+    className="container"
+  >
+    <div
+      className="stats-table"
+    >
+      <aside>
+        <p>
+          <strong>
+            Market Cap
+          </strong>
+        </p>
+        0
+      </aside>
+      <aside>
+        <p>
+          <strong>
+            Change 1hr
+          </strong>
+        </p>
+        <span
+          className="red"
+        >
+          0.00%
+        </span>
+      </aside>
+      <aside>
+        <p>
+          <strong>
+            Change 24hr
+          </strong>
+        </p>
+        <span
+          className="red"
+        >
+          0.00%
+        </span>
+      </aside>
+      <aside>
+        <p>
+          <strong>
+            Change 7d
+          </strong>
+        </p>
+        <span
+          className="red"
+        >
+          0.00%
+        </span>
+      </aside>
+      <aside>
+        <p>
+          <strong>
+            Volume 24hr
+          </strong>
+        </p>
+        0
+      </aside>
+    </div>
+  </div>
+</section>
+`;
+
+exports[`CoinDataStats Component renders five columns (aside) inside .stats-table 1`] = `
+<section
+  className="CoinData-stats"
+>
+  <div
+    className="container"
+  >
+    <div
+      className="stats-table"
+    >
+      <aside>
+        <p>
+          <strong>
+            Market Cap
+          </strong>
+        </p>
+        0
+      </aside>
+      <aside>
+        <p>
+          <strong>
+            Change 1hr
+          </strong>
+        </p>
+        <span
+          className="red"
+        >
+          0.00%
+        </span>
+      </aside>
+      <aside>
+        <p>
+          <strong>
+            Change 24hr
+          </strong>
+        </p>
+        <span
+          className="red"
+        >
+          0.00%
+        </span>
+      </aside>
+      <aside>
+        <p>
+          <strong>
+            Change 7d
+          </strong>
+        </p>
+        <span
+          className="red"
+        >
+          0.00%
+        </span>
+      </aside>
+      <aside>
+        <p>
+          <strong>
+            Volume 24hr
+          </strong>
+        </p>
+        0
+      </aside>
+    </div>
+  </div>
+</section>
+`;
+
+exports[`CoinDataStats Component second column text should be "Change 1hr0" when no props are set 1`] = `
+<section
+  className="CoinData-stats"
+>
+  <div
+    className="container"
+  >
+    <div
+      className="stats-table"
+    >
+      <aside>
+        <p>
+          <strong>
+            Market Cap
+          </strong>
+        </p>
+        0
+      </aside>
+      <aside>
+        <p>
+          <strong>
+            Change 1hr
+          </strong>
+        </p>
+        <span
+          className="red"
+        >
+          0.00%
+        </span>
+      </aside>
+      <aside>
+        <p>
+          <strong>
+            Change 24hr
+          </strong>
+        </p>
+        <span
+          className="red"
+        >
+          0.00%
+        </span>
+      </aside>
+      <aside>
+        <p>
+          <strong>
+            Change 7d
+          </strong>
+        </p>
+        <span
+          className="red"
+        >
+          0.00%
+        </span>
+      </aside>
+      <aside>
+        <p>
+          <strong>
+            Volume 24hr
+          </strong>
+        </p>
+        0
+      </aside>
+    </div>
+  </div>
+</section>
+`;
+
+exports[`CoinDataStats Component second column text should be "Change 1hr1.05%" when props are set to 1.05 1`] = `
+<section
+  className="CoinData-stats"
+>
+  <div
+    className="container"
+  >
+    <div
+      className="stats-table"
+    >
+      <aside>
+        <p>
+          <strong>
+            Market Cap
+          </strong>
+        </p>
+        0
+      </aside>
+      <aside>
+        <p>
+          <strong>
+            Change 1hr
+          </strong>
+        </p>
+        <span
+          className="green"
+        >
+          1.05%
+        </span>
+      </aside>
+      <aside>
+        <p>
+          <strong>
+            Change 24hr
+          </strong>
+        </p>
+        <span
+          className="red"
+        >
+          0.00%
+        </span>
+      </aside>
+      <aside>
+        <p>
+          <strong>
+            Change 7d
+          </strong>
+        </p>
+        <span
+          className="red"
+        >
+          0.00%
+        </span>
+      </aside>
+      <aside>
+        <p>
+          <strong>
+            Volume 24hr
+          </strong>
+        </p>
+        0
+      </aside>
+    </div>
+  </div>
+</section>
+`;
+
+exports[`CoinDataStats Component should change the class name of the percent span tags to green when props are a positive number 1`] = `
+<section
+  className="CoinData-stats"
+>
+  <div
+    className="container"
+  >
+    <div
+      className="stats-table"
+    >
+      <aside>
+        <p>
+          <strong>
+            Market Cap
+          </strong>
+        </p>
+        0
+      </aside>
+      <aside>
+        <p>
+          <strong>
+            Change 1hr
+          </strong>
+        </p>
+        <span
+          className="green"
+        >
+          1.05%
+        </span>
+      </aside>
+      <aside>
+        <p>
+          <strong>
+            Change 24hr
+          </strong>
+        </p>
+        <span
+          className="green"
+        >
+          2.98%
+        </span>
+      </aside>
+      <aside>
+        <p>
+          <strong>
+            Change 7d
+          </strong>
+        </p>
+        <span
+          className="green"
+        >
+          8.90%
+        </span>
+      </aside>
+      <aside>
+        <p>
+          <strong>
+            Volume 24hr
+          </strong>
+        </p>
+        0
+      </aside>
+    </div>
+  </div>
+</section>
+`;
+
+exports[`CoinDataStats Component should change the class name of the percent span tags to red when props are a negative number 1`] = `
+<section
+  className="CoinData-stats"
+>
+  <div
+    className="container"
+  >
+    <div
+      className="stats-table"
+    >
+      <aside>
+        <p>
+          <strong>
+            Market Cap
+          </strong>
+        </p>
+        0
+      </aside>
+      <aside>
+        <p>
+          <strong>
+            Change 1hr
+          </strong>
+        </p>
+        <span
+          className="red"
+        >
+          -1.05%
+        </span>
+      </aside>
+      <aside>
+        <p>
+          <strong>
+            Change 24hr
+          </strong>
+        </p>
+        <span
+          className="red"
+        >
+          -2.98%
+        </span>
+      </aside>
+      <aside>
+        <p>
+          <strong>
+            Change 7d
+          </strong>
+        </p>
+        <span
+          className="red"
+        >
+          -8.90%
+        </span>
+      </aside>
+      <aside>
+        <p>
+          <strong>
+            Volume 24hr
+          </strong>
+        </p>
+        0
+      </aside>
+    </div>
+  </div>
+</section>
+`;
