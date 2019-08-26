@@ -86,9 +86,9 @@ export default class FavoriteList extends Component {
     return (
       <>
         <h2>Favorites</h2>
-        <div className="FavoriteList">
+        <div className="FavoriteList" aria-live="polite">
           { favs }
-          <div className="Favorite" onClick={(event) => this.props.showModal(event)}>
+          <div className="Favorite" tabIndex="0" role="button" onClick={(event) => this.props.showModal(event)}>
             <aside className="add-fav">
               <FontAwesomeIcon
                 icon={faSearchPlus}
