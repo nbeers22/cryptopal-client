@@ -47,7 +47,7 @@
 }
 .SearchCoins form label,.SearchCoins form input{
   display: block;
-  width: 50%;
+  width: 80%;
   margin: 0 auto;
 }
 .SearchCoins form label{
@@ -71,10 +71,15 @@
 .coin-list{
   position: absolute;
   background-color: white;
-  width: 100%;
+  width: 80%;
   max-height: 200px;
   overflow-y: scroll;
   padding: 0;
+  margin-top: 0;
+  border: 1px solid #ccc;
+  border-top: 0;
+  transform: translateX(-50%);
+  left: 50%;
 }
 .coin-list li{
   padding: 7px 20px;
@@ -93,11 +98,25 @@
 }
 .found-coin-name{
   width: 80%;
+  text-align: left;
 }
 .found-coin-fav{
   width: 20%;
   text-align: right;
 }
+.found-coin-fav button{
+  padding: 5px 0 0;
+  border: 0;
+}
 .found-coin-fav img{
   width: 25px;
+}
+
+@media(max-width: 640px){
+  .coin-list{
+    width: 100%;
+  }
+  .SearchCoins form label,.SearchCoins form input{
+    width: 100%;
+  }
 }
