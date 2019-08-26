@@ -16,6 +16,7 @@ export default class Home extends Component {
   }
 
   componentDidMount(){
+    document.title = "CryptoPal links and features"
     window.addEventListener( "resize", this.updateWindowWidth );
   }
 
