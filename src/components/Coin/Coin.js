@@ -25,6 +25,7 @@ function Coin(props){
   if(favoritesList.includes(id)){
     isFavorite = true
   }
+  const decimalPlaces = price >= .01 ? 2 : 4;
 
   return (
     <div className="rTableRow">
@@ -40,16 +41,16 @@ function Coin(props){
         </Link>
       </div>
       <div className="rTableCell">
-        {`$${price.toFixed(2)}`}
+        { price && `$${price.toFixed(decimalPlaces)}` }
       </div>
       <div className="rTableCell">
-        <span className={percentClass(percentChangeHour)}>{`${percentChangeHour.toFixed(2)}%`}</span>
+        { percentChangeHour && <span className={percentClass(percentChangeHour)}>{`${percentChangeHour.toFixed(2)}%`}</span>}
       </div>
       <div className="rTableCell">
-        <span className={percentClass(percentChangeDay)}>{`${percentChangeDay.toFixed(2)}%`}</span>
+        { percentChangeDay && <span className={percentClass(percentChangeDay)}>{`${percentChangeDay.toFixed(2)}%`}</span>}
       </div>
       <div className="rTableCell">
-        <span className={percentClass(percentChangeSevenDays)}>{`${percentChangeSevenDays.toFixed(2)}%`}</span>
+        { percentChangeSevenDays && <span className={percentClass(percentChangeSevenDays)}>{`${percentChangeSevenDays.toFixed(2)}%`}</span>}
       </div>
       <div className="rTableCell">
         ${Math.floor(marketCap).toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')}
