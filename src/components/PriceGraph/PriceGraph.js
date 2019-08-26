@@ -10,6 +10,9 @@ export default class PriceGraph extends Component {
     this.state = {
       numDays: 30,
       coinSlug: '',
+      graphErrorMessage: "No Graph Data Available",
+      graphError: false,
+      pbottom: { paddingBottom: "5%" },
       options: {
         chart: {
           zoom: {
@@ -89,7 +92,7 @@ export default class PriceGraph extends Component {
     .then( response => {
       return response.ok
         ? response.json()
-        : console.log(response)
+        : this.setState({ graphError: true })
     })
     .then( data => {
       this.setGraphData(data)
@@ -99,22 +102,24 @@ export default class PriceGraph extends Component {
   setGraphData(data){
     const xaxisCats = [];
     const yaxisPrices = [];
-    data.prices.forEach( (day,index) => {
-      const dateStr = new Date(day[0]);
-      const date = dateStr.toLocaleString();
-      yaxisPrices.push(day[1].toFixed(2))
-      xaxisCats.push(date)
-    });
-    this.setState({
-      options:{
-        xaxis: {
-          categories: xaxisCats
-        }
-      },
-      series: [{
-        data: yaxisPrices
-      }],
-    })
+    if(data){
+      data.prices.forEach( (day,index) => {
+        const dateStr = new Date(day[0]);
+        const date = dateStr.toLocaleString();
+        yaxisPrices.push(day[1].toFixed(2))
+        xaxisCats.push(date)
+      });
+      this.setState({
+        options:{
+          xaxis: {
+            categories: xaxisCats
+          }
+        },
+        series: [{
+          data: yaxisPrices
+        }],
+      })
+    }
   }
 
   render() {
@@ -133,16 +138,31 @@ export default class PriceGraph extends Component {
         onClick={this.handleButtonClick}>{`${btn.num} ${btn.time}`}
       </button>
     ))
-    
+
+    const pbottom = this.state.graphError
+                    ? { paddingBottom: "5%" }
+                    : { paddingBottom: "0" }
+
     return (
-      <div className="PriceGraph">
-        <div className="btn-group">
-          { btnGroup }
+      <section className="price-history" style={pbottom}>
+        <div className="PriceGraph">
+          <div className="container">
+            <center><h2>Price History</h2></center>
+
+            {
+              !this.state.graphError
+                ? <><div className="btn-group">
+                    { btnGroup }
+                  </div>
+                  <div id="chart">
+                    <ReactApexChart options={this.state.options} series={this.state.series} type="line" height="350" />
+                  </div></>
+                : <center style={{marginBottom: "0"}}><h3 style={{marginBottom: "0"}}>{ this.state.graphErrorMessage }</h3></center>
+            }
+            
+          </div>
         </div>
-        <div id="chart">
-          <ReactApexChart options={this.state.options} series={this.state.series} type="line" height="350" />
-        </div>
-      </div>
-    );
+      </section>
+    )
   }
 }
