@@ -12,7 +12,7 @@ const CoinLinksTable = props => {
       <table>
         <thead>
           <tr>
-            <th colSpan="2">
+            <th colSpan="2" role="columnheader">
               <h2>{ `${name} Resources` }</h2>
             </th>
           </tr>
