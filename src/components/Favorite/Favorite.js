@@ -24,7 +24,7 @@ class Favorite extends Component {
 
   render(){
 
-    const { rank, logo, name, price, change24hr, id, marketCap } = this.props;
+    const { logo, name, price, change24hr, id } = this.props;
     let arrow, color;
     if(+change24hr > 0){
       arrow = faLongArrowAltUp
@@ -38,15 +38,15 @@ class Favorite extends Component {
       <div id={`Favorite-${id}`} className="Favorite">
         <div className="Favorite-options">
           <aside className="options-left">
-            <Link to={`/coins/${id}`} title={`More information about ${name}`}>
+            <Link to={`/coins/${id}`} title={`More information about ${name}`} aria-label={`More information about ${name}`}>
               <FontAwesomeIcon icon={faInfoCircle} />
             </Link>
           </aside>
           <aside className="options-right">
-            <Link to="#" onClick={this.handleRemoveFavorite} className="removeFav" data-id={id} title="Remove from favorites"><FontAwesomeIcon icon={faTimesCircle} /></Link>
+            <Link to="#" onClick={this.handleRemoveFavorite} className="removeFav" data-id={id} title="Remove from favorites" aria-label="Remove from favorites"><FontAwesomeIcon icon={faTimesCircle} /></Link>
           </aside>
         </div>
-        <Link to={`/coins/${id}`} title={`More information about ${name}`}>
+        <Link to={`/coins/${id}`} title={`More information about ${name}`} aria-label={`More information about ${name}`}>
           <img className="Favorite-logo" src={logo} alt={name} />
         </Link>
         <h2>{ name }</h2>
