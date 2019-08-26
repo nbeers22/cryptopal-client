@@ -5,7 +5,7 @@ import './FlashMessage.css'
 function FlashMessage(props){
 
   return(
-    <div className={"FlashMessage" + (props.error ? " error" : " success")}>
+    <div className={"FlashMessage" + (props.error ? " error" : " success")} role="alert">
       { props.message } { !props.error && props.login && <Link to="/login">log in</Link>}
     </div>
   )
