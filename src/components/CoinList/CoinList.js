@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faStar } from '@fortawesome/free-solid-svg-icons'
+import { faStar, faLongArrowAltRight, faLongArrowAltLeft } from '@fortawesome/free-solid-svg-icons'
 import Coin from '../Coin/Coin.js'
 import config from '../../config.js'
 import TokenService from '../../services/token-service.js'
@@ -13,10 +13,16 @@ export default class CoinList extends Component {
       coins: [],
       favorites: [],
       loggedIn: false,
+      currentPage: 1,
+      currentSort: 'market_cap',
+      currentSortText: "Market Cap",
+      currentSortRange: "100"
     }
   }
   
   componentDidMount(){
+    // set doc title
+    document.title = "List of top 100 coins by Market Cap";
     // Check if a user is logged in
     if(TokenService.getAuthToken()){
       this.setState({ loggedIn: true })
@@ -24,7 +30,11 @@ export default class CoinList extends Component {
     // Get user's favorites
     this.getUserFavorites()
     // Get list of all coins
-    const url = `${config.API_URL}/coins`;
+    this.getCoins()
+  }
+
+  getCoins(start = 1, limit = 100){
+    const url = `${config.API_URL}/coins?start=${start}&limit=${limit}&sort=${this.state.currentSort}`;
     fetch(url)
     .then( response => {
       return response.ok
@@ -101,6 +111,63 @@ export default class CoinList extends Component {
     })
   }
 
+  changeActiveSort(button){
+    // remove active-sort class from table heads
+    const activeHeading = document.getElementsByClassName('active-sort')[0]
+    activeHeading.classList.remove('active-sort')
+    // remove .caretDown from current sorted element
+    document.getElementsByClassName('caretDown')[0].remove()
+    // add .active-sort to button's parent
+    button.parentElement.classList.add('active-sort')
+    // add arrow down to button text
+    this.setState({
+      currentSortText: button.innerText,
+      currentSortRange: '100'
+    })
+    button.innerHTML = `${button.innerText} <span class="caretDown">&#9660;</span>`
+  }
+
+  handleChangeSort = (target,sortBy) => {
+    this.setState({
+      currentSort: sortBy,
+      currentPage: 1
+    }, () => {
+      this.getCoins()
+      setTimeout( () => {
+        this.changeActiveSort(target)
+      },500)
+    })
+  }
+
+  scrolltoTop(){
+    window.scrollTo(0,0);
+  }
+
+  handleGetNextCoins = () => {
+    this.scrolltoTop()
+    this.setState({
+      currentPage: this.state.currentPage + 1
+    }, () => {
+      const limit = this.state.currentPage * 100
+      const start = limit - 99
+      this.getCoins(start)
+      this.setState({
+        currentSortRange: `${start} - ${limit}`
+      })
+    })
+  }
+  
+  handleGetPrevCoins = () => {
+    this.scrolltoTop()
+    this.setState({
+      currentPage: this.state.currentPage - 1
+    }, () => {
+      const limit = this.state.currentPage * 100
+      const start = limit - 99
+      this.getCoins(start)
+    })
+  }
+
   render() {
     const coins = this.state.coins.map( coin => (
       <Coin
@@ -119,39 +186,76 @@ export default class CoinList extends Component {
       />
     ));
 
+    const { currentPage, currentSortText, currentSortRange } = this.state;
+
     return (
       <section className="Coinlist">
         <div className="container">
-          <div className="rTable">
-            <div className="rTableHeading">
-              {
-                this.state.loggedIn &&
-                  <div className="rTableHead">
-                    Add Fav
-                  </div>
+          <center><h1>Top { currentSortRange } Coins by { currentSortText }</h1></center>
+          <div className="table-container">
+          
+            <div className="rTable">
+              <div className="rTableHeading">
+                {
+                  this.state.loggedIn &&
+                    <div className="rTableHead" role="columnheader">
+                      Favorite
+                    </div>
+                }
+                <div className="rTableHead" role="columnheader">
+                  <button
+                    className="btn-sort"
+                    onClick={(e) => this.handleChangeSort(e.target,'name')}
+                    aria-label="Sort by name">Name (Symbol)
+                  </button>
+                </div>
+                <div className="rTableHead" role="columnheader">
+                  <button
+                    className="btn-sort"
+                    onClick={(e) => this.handleChangeSort(e.target,'price')}
+                    aria-label="Sort by price">Price
+                  </button>
+                </div>
+                <div className="rTableHead" role="columnheader">
+                  <button
+                    className="btn-sort"
+                    onClick={(e) => this.handleChangeSort(e.target,'percent_change_1h')}
+                    aria-label="Sort by Percent Change 1 hour">1hr
+                  </button>
+                </div>
+                <div className="rTableHead" role="columnheader">
+                  <button
+                    className="btn-sort"
+                    onClick={(e) => this.handleChangeSort(e.target,'percent_change_24h')}
+                    aria-label="Sort by Percent Change 24 hours">24hr
+                  </button>
+                </div>
+                <div className="rTableHead" role="columnheader">
+                  <button
+                    className="btn-sort"
+                    onClick={(e) => this.handleChangeSort(e.target,'percent_change_7d')}
+                    aria-label="Sort by Percent Change 7 days">7d
+                  </button>
+                </div>
+                <div className="rTableHead active-sort" role="columnheader">
+                  <button
+                    className="btn-sort"
+                    onClick={(e) => this.handleChangeSort(e.target,'market_cap')}
+                    aria-label="Sort by market cap">Market Cap <span className="caretDown">&#9660;</span>
+                  </button>
+                </div>
+              </div>
+              <div className="rTableBody">
+                {coins}
+              </div>
+            </div>
+            </div>
+
+          <div className="paginate-links">
+              { currentPage !== 1 
+                && <button className="btn-cta" onClick={this.handleGetPrevCoins}><FontAwesomeIcon icon={faLongArrowAltLeft} /> Previous 100</button>
               }
-              <div className="rTableHead">
-                Name (Symbol)
-              </div>
-              <div className="rTableHead">
-                Price
-              </div>
-              <div className="rTableHead">
-                1hr
-              </div>
-              <div className="rTableHead">
-                24hr
-              </div>
-              <div className="rTableHead">
-                7d
-              </div>
-              <div className="rTableHead">
-                Market Cap
-              </div>
-            </div>
-            <div className="rTableBody">
-              {coins}
-            </div>
+              <button className="btn-cta" onClick={this.handleGetNextCoins}>Next 100 <FontAwesomeIcon icon={faLongArrowAltRight} /></button>
           </div>
         </div>
       </section>
