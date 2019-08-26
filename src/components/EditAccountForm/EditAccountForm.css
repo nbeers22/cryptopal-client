@@ -1,8 +1,12 @@
 .EditAccountForm{
   display: flex;
+  flex-wrap: wrap;
   width: 90%;
   max-width: 800px;
   margin: 0 auto;
+}
+.EditAccountForm .FlashMessage{
+  flex: 0 0 100%;
 }
 .EditAccountForm .form{
   flex: 0 0 50%;
