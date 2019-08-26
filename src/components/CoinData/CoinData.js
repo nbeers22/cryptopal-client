@@ -9,8 +9,8 @@ import CoinLinksTable from '../CoinLinksTable/CoinLinksTable.js';
 import CoinDataStats from '../CoinDataStats/CoinDataStats.js';
 import config from '../../config.js'
 import loader from '../../images/loading.gif'
-import './CoinData.css'
 import Trophy from './Trophy.js';
+import './CoinData.css'
 
 class CoinData extends Component {
   _isMounted = false;
@@ -59,11 +59,13 @@ class CoinData extends Component {
         }
       },
       redditFeed: [],
+      redditFeedError: false,
       loadingFeed: true
     }
   }
   
   componentDidMount(){
+    // set doc title
     this._isMounted = true;
     const urls = [
       `${config.API_URL}/coins/${this.coinID}`,
@@ -79,6 +81,8 @@ class CoinData extends Component {
             coinData: data[0].data,
             coinMarket: data[1].data
           }, () => {
+            // set doc title
+            document.title = `${this.state.coinData[this.coinID].name} information, price graph, and references`;
             if(this.state.coinData[this.coinID].urls.reddit[0]){
               const redditSlug = this.state.coinData[this.coinID].urls.reddit[0].split("/r/")[1]
               this.getRedditFeed(redditSlug)
@@ -92,7 +96,9 @@ class CoinData extends Component {
     const url = `${config.API_URL}/coins/${slug}/redditFeed`
     fetch(url)
     .then( response => {
-      return response.json()
+      return response.ok
+              ? response.json()
+              : this.setState({ redditFeedError: true, loadingFeed: false })
     })
     .then(resJSON => {
       this.setState({
@@ -121,27 +127,27 @@ class CoinData extends Component {
         key={i}
       />
     ))
+
+    let decimalPlaces = quote.USD.price >= .01 ? 2 : 4;
     
     return (
       <div className="CoinData">
+
         <section className="CoinData-hero">
           <div className="container">
             <img src={logo} alt=""/>
             <h1>{`${name} (${symbol})`}</h1>
             <p><span className="rank">{cmc_rank <= 3 && <Trophy rank={cmc_rank} />} {`Rank #${cmc_rank}`}</span></p>
-            <h2>{ this.currencyFormat(quote.USD.price) }</h2>
+            <h2>{ quote.USD.price && `$${quote.USD.price.toFixed(decimalPlaces)}` }</h2>
             <p className="description">{description}</p>
           </div>
         </section>
+
         <CoinDataStats
           prices={quote.USD}
         />
-        <section className="price-history">
-          <div className="container">
-            <center><h2>Price History</h2></center>
-            <PriceGraph slug={slug} />
-          </div>
-        </section>
+        
+        <PriceGraph slug={slug} />
 
         <Converter 
           symbol={symbol}
@@ -167,7 +173,9 @@ class CoinData extends Component {
                         { redditFeed }
                       </div>
                     </div>
-                  : <img src={loader} alt="Loading Reddit Feed" /> 
+                  : !this.state.redditFeedError
+                    ? <h2>Unable to get Reddit feed</h2>
+                    : <img src={loader} alt="Loading Reddit Feed" /> 
               }
               
             </aside>
