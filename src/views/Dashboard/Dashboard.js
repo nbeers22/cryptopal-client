@@ -21,6 +21,7 @@ class Dashboard extends Component {
   }
 
   componentDidMount(){
+    document.title = "Cryptopal User Dashboard"
     this.checkLoggedIn();
     const name = TokenService.getAuthName();
     this.setState({ name }, this.getUserFavorites )
@@ -79,8 +80,6 @@ class Dashboard extends Component {
       if(res){
         if(res.error === "Token Expired"){
           this.props.history.push('/login')
-        }else{
-          console.log(res)
         }
       }
     })
