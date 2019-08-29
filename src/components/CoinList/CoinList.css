@@ -1,3 +1,6 @@
+.table-container{
+  overflow: auto;
+}
 .rTable{
   display: table;
   width: 100%;

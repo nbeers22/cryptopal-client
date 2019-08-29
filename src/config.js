@@ -1,5 +1,5 @@
 const config = {
-  API_URL: 'http://localhost:4000/api',
+  API_URL: 'https://cryptopal-api.herokuapp.com/api',
   TOKEN_KEY: 'cryptopal-client-auth-token',
 }
 

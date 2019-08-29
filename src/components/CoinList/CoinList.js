@@ -25,10 +25,11 @@ export default class CoinList extends Component {
     document.title = "List of top 100 coins by Market Cap";
     // Check if a user is logged in
     if(TokenService.getAuthToken()){
-      this.setState({ loggedIn: true })
+      this.setState({ loggedIn: true }, () => {
+        // Get user's favorites if logged in
+        this.getUserFavorites()
+      })
     }
-    // Get user's favorites
-    this.getUserFavorites()
     // Get list of all coins
     this.getCoins()
   }
@@ -143,28 +144,21 @@ export default class CoinList extends Component {
     window.scrollTo(0,0);
   }
 
-  handleGetNextCoins = () => {
+  handlePagination = (direction) => {
+    const currentPage = direction === "up" 
+                        ? this.state.currentPage + 1
+                        : this.state.currentPage - 1 
     this.scrolltoTop()
     this.setState({
-      currentPage: this.state.currentPage + 1
+      currentPage
     }, () => {
       const limit = this.state.currentPage * 100
       const start = limit - 99
       this.getCoins(start)
+      const range = this.state.currentPage === 1 ? "100" : `${start} - ${limit}`
       this.setState({
-        currentSortRange: `${start} - ${limit}`
+        currentSortRange: range
       })
-    })
-  }
-  
-  handleGetPrevCoins = () => {
-    this.scrolltoTop()
-    this.setState({
-      currentPage: this.state.currentPage - 1
-    }, () => {
-      const limit = this.state.currentPage * 100
-      const start = limit - 99
-      this.getCoins(start)
     })
   }
 
@@ -183,6 +177,7 @@ export default class CoinList extends Component {
         percentChangeSevenDays={coin.quote.USD.percent_change_7d}
         favIcon={<FontAwesomeIcon icon={faStar} onClick={() => this.addToFavorites(coin.id)} />}
         favoritesList={this.state.favorites}
+        loggedIn={this.state.loggedIn}
       />
     ));
 
@@ -253,9 +248,9 @@ export default class CoinList extends Component {
 
           <div className="paginate-links">
               { currentPage !== 1 
-                && <button className="btn-cta" onClick={this.handleGetPrevCoins}><FontAwesomeIcon icon={faLongArrowAltLeft} /> Previous 100</button>
+                && <button className="btn-cta" onClick={() => this.handlePagination("down")}><FontAwesomeIcon icon={faLongArrowAltLeft} /> Previous 100</button>
               }
-              <button className="btn-cta" onClick={this.handleGetNextCoins}>Next 100 <FontAwesomeIcon icon={faLongArrowAltRight} /></button>
+              <button className="btn-cta" onClick={() => this.handlePagination("up")}>Next 100 <FontAwesomeIcon icon={faLongArrowAltRight} /></button>
           </div>
         </div>
       </section>

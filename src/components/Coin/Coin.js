@@ -14,7 +14,8 @@ function Coin(props){
     percentChangeSevenDays,
     percentChangeHour,
     favIcon,
-    favoritesList
+    favoritesList,
+    loggedIn
   } = props;
   
   const percentClass = percent => {
@@ -26,12 +27,15 @@ function Coin(props){
     isFavorite = true
   }
   const decimalPlaces = price >= .01 ? 2 : 4;
-
+        
   return (
     <div className="rTableRow">
-      <div className={"rTableCell" + (isFavorite ? " isFavorite" : "")}>
-        {favIcon}
-      </div>
+      {
+        loggedIn && 
+          <div className={"rTableCell" + (isFavorite ? " isFavorite" : "")}>
+            {favIcon}
+          </div>
+      }
       <div className="rTableCell">
         <Link to={`/coins/${id}`}>
           <div className="rTableFlex">
